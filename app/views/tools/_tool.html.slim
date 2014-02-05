@@ -1,0 +1,7 @@
+=link_to tool.url, tool.url
+i.fa.fa-star
+= tool.metadata['stars']
+i.fa.fa-code-fork
+= tool.metadata['forks']
+- tool.tags.each do |tag|
+  span.round.label= link_to tag.name

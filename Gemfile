@@ -18,7 +18,8 @@ gem 'rspec'
 gem 'foundation-rails'
 gem 'octokit', '~> 2.0'
 gem 'acts_as_taggable_on'
-
+gem 'font-awesome-sass'
+gem 'simple_form'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
