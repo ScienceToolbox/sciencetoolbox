@@ -9,7 +9,7 @@ worker_processes 1
 # listen on both a Unix domain socket and a TCP port,
 # we use a shorter backlog for quicker failover when busy
 listen "/tmp/st.socket", :backlog => 64
-listen 8039, :tcp_nopush => true
+listen 8040, :tcp_nopush => true
 
 # Preload our app for more speed
 preload_app true
