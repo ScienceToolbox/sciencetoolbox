@@ -4,6 +4,7 @@
 
 .label.round {
   margin-right: 0.5em;
+  margin-bottom: 0.5em;
   a {
     color: #fff;
   }
@@ -18,6 +19,10 @@ ul.tools {
 
   .stargazers_count {
     margin-right: 1em;
+  }
+  li {
+    padding-bottom: 6px;
+    border-bottom: 1px solid #eee;
   }
 }
 
