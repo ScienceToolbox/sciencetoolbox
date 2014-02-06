@@ -19,7 +19,9 @@ class Tool < ActiveRecord::Base
     metadata = repo.to_hash
     metadata[:owner] = metadata[:owner].to_hash
     metadata[:owner_login] = metadata[:owner][:login]
-    metadata[:organization] = metadata[:organization].to_hash
+    if metadata[:organization]
+      metadata[:organization] = metadata[:organization].to_hash
+    end
     self.metadata = metadata
   end
 end

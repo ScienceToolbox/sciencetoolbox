@@ -3,12 +3,16 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .label.round {
+  margin-right: 0.5em;
   a {
     color: #fff;
   }
 }
 
 ul.tools {
+  li {
+    margin-bottom: 1em;
+  }
   margin-left: 0;
   list-style: none;
 
