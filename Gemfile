@@ -20,6 +20,9 @@ gem 'octokit', '~> 2.0'
 gem 'acts_as_taggable_on'
 gem 'font-awesome-sass'
 gem 'simple_form'
+gem 'capistrano', '<= 3.0.0'
+gem 'capistrano-unicorn'
+gem 'capistrano-rbenv'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -31,7 +34,7 @@ gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
-
+gem 'pry'
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

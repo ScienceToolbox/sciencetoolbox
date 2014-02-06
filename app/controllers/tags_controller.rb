@@ -12,5 +12,6 @@ class TagsController < ApplicationController
 
   def show
     @tag = ActsAsTaggableOn::Tag.find_by_name(params[:name])
+    @tools = Tool.tagged_with(params[:name])
   end
 end

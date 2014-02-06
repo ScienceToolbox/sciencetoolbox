@@ -1,0 +1,9 @@
+.row
+  = simple_form_for tool do |f|
+    .small-12.columns.medium-5
+      = f.input :url, label: 'GitHub repo', placeholder: 'e.g. https://github.com/astropy/astropy or just astropy/astropy'
+    .small-12.columns.medium-5
+      = f.input :tag_list, label: 'Tags', placeholder: 'astronomy, astrophysics'
+    .small-12.columns.medium-2
+      label &nbsp;
+      = f.submit 'Add tool', class: 'button postfix'

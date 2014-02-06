@@ -1,0 +1,8 @@
+.row
+  .small-12.columns
+    h1
+      = image_tag 'science-toolbox-logo-small.png', id: 'logo-small'
+      |  tagged with #{@tag}
+    ul.tools
+      - @tools.each do |tool|
+        li= render 'tools/tool', tool: tool

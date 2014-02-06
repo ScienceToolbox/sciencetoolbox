@@ -1,7 +1,19 @@
-=link_to tool.url, tool.url
-i.fa.fa-star
-= tool.metadata['stars']
-i.fa.fa-code-fork
-= tool.metadata['forks']
-- tool.tags.each do |tag|
-  span.round.label= link_to tag.name
+.row
+  .small-8.medium-6.large-5.columns
+    = link_to tool.url, tool.url
+    - if tool.metadata['owner']
+      |  by&nbsp;
+      = link_to tool.metadata['owner_login'], "https://www.github.com/#{tool.metadata['owner_login']}"
+
+  .small-4.medium-2.large-2.large-push-5.columns
+    span.stargazers_count
+      i.fa.fa-star
+      = tool.metadata['stargazers_count']
+    span.forks_count
+      i.fa.fa-code-fork
+      = tool.metadata['forks_count']
+
+
+  .small-12.medium-12.large-5.large-pull-2.columns
+    - tool.tags.each do |tag|
+      span.round.label= link_to tag.name, tag_path(tag.name)

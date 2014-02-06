@@ -1,0 +1,35 @@
+// Place all the styles related to the tools controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.label.round {
+  a {
+    color: #fff;
+  }
+}
+
+ul.tools {
+  margin-left: 0;
+  list-style: none;
+
+  .stargazers_count {
+    margin-right: 1em;
+  }
+}
+
+body {
+  margin-top: 2em;
+}
+h1 {
+  margin-bottom: 2em;
+}
+
+img#logo {
+  height: 289px;
+  width: 300px;
+}
+
+img#logo-small {
+  height: 96px;
+  width: 100px;
+}
