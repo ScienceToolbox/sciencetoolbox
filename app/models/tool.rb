@@ -1,6 +1,6 @@
 class Tool < ActiveRecord::Base
   acts_as_taggable
-
+  validates_uniqueness_of :url
   before_save :get_github_metadata
 
   def repo_name
@@ -23,5 +23,6 @@ class Tool < ActiveRecord::Base
       metadata[:organization] = metadata[:organization].to_hash
     end
     self.metadata = metadata
+    true
   end
 end
