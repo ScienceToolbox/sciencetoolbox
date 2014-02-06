@@ -1,4 +1,5 @@
 require "capistrano-rbenv"
+
 set :application, "st"
 set :scm, :git
 set :repository,  "git@github.com:jure/sciencetoolbox.git"
@@ -25,7 +26,6 @@ set :rails_env, 'production'
 set :rack_env, 'production'
 set :app_env, 'production'
 set :unicorn_env, 'production'
-set :hipchat_env, 'production'
 
 set :user, 'deploy'
 set :deploy_to,   "/home/#{user}/apps/#{application}/"
