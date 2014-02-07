@@ -1,9 +1,8 @@
 .row
   .small-12.medium-5.large-5.columns
     = link_to tool.url, tool.url
-    - if tool.metadata['owner']
-      |  by&nbsp;
-      = link_to tool.metadata['owner_login'], "https://www.github.com/#{tool.metadata['owner_login']}"
+    |  by&nbsp;
+    = link_to tool.metadata['owner_login'], tool.metadata['owner_url']
     .show-for-small-only
       span.stargazers_count
         i.fa.fa-star
