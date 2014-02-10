@@ -5,7 +5,10 @@
       h1 ScienceToolbox
     ul.tools
       - @tools.each do |tool|
-        li= render 'tools/tool', tool: tool
+        - begin
+          = render 'tools/tool', tool: tool
+        - rescue
+          = nil
 
 .row.form
   .small-12.columns
