@@ -1,7 +1,9 @@
 class Tool < ActiveRecord::Base
   acts_as_taggable
-  validates_uniqueness_of :url
   before_save :get_metadata
+
+  validates_uniqueness_of :url
+  validates_presence_of :url
 
   def repo_name
     case url
