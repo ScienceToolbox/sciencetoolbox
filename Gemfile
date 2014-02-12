@@ -23,6 +23,7 @@ gem 'simple_form'
 gem 'capistrano', '<= 3.0.0'
 gem 'capistrano-unicorn'
 gem 'capistrano-rbenv'
+gem 'devise'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 #gem 'therubyracer', platforms: :ruby
 
