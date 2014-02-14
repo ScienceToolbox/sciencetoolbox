@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def home
-    @tools = Tool.all
+    @tools = Tool.order('id DESC').all
     @tool = Tool.new
   end
 end
