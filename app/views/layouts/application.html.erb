@@ -13,8 +13,12 @@
   </head>
 
   <body>
-
-    <%= yield %>
+    <div class="row">
+      <div class="small-12">
+        <%= link_to 'Sign up', new_user_registration_path %>
+        <%= yield %>
+      </div>
+    </div>
     <%= javascript_include_tag "application" %>
     <div class="row github">
       <div class="small-12 columns text-center">

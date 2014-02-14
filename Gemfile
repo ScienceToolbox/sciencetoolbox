@@ -24,6 +24,10 @@ gem 'capistrano', '<= 3.0.0'
 gem 'capistrano-unicorn'
 gem 'capistrano-rbenv'
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-github'
+gem 'omniauth-bitbucket'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 #gem 'therubyracer', platforms: :ruby
 
