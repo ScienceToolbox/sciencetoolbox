@@ -2,6 +2,8 @@ class Tool < ActiveRecord::Base
   acts_as_taggable
   before_save :get_metadata
 
+  has_and_belongs_to_many :users
+
   validates_uniqueness_of :url
   validates_presence_of :url
 

@@ -1,6 +1,7 @@
 Sciencetoolbox::Application.routes.draw do
   devise_for :users,
-    :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+    :controllers => { :omniauth_callbacks => "users/omniauth_callbacks",
+                      :registrations => 'users/registrations' }
 
   get "tools/create"
   root "pages#home"
@@ -10,6 +11,11 @@ Sciencetoolbox::Application.routes.draw do
   get "tag/:name" => 'tags#show', as: :tag
 
   resources :tools
+  resources :users do
+    get 'profile' => 'users/profiles#show'
+  end
+  # resources :profiles
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
