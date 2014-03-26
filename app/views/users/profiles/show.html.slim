@@ -4,4 +4,4 @@ p Find me in app/views/users/profiles/show.html.slim
 p= @user.email
 
 - @tools.each do |tool|
-  p= tool.metadata['name']
+  p= link_to tool.name, ''

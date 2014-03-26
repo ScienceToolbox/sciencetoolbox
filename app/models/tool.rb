@@ -6,6 +6,7 @@ class Tool < ActiveRecord::Base
 
   validates_uniqueness_of :url
   validates_presence_of :url
+  validates_presence_of :name
 
   def repo_name
     case url
