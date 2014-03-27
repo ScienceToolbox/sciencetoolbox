@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
          :omniauth_providers => [:github, :twitter, :bitbucket]
 
   has_and_belongs_to_many :tools
+  has_many :citations, :through => :tools
 
   after_create :find_tools
 

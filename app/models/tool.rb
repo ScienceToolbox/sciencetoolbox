@@ -1,9 +1,9 @@
 class Tool < ActiveRecord::Base
   acts_as_taggable
-  before_save :get_metadata
+  before_validation :get_metadata
 
   has_and_belongs_to_many :users
-
+  has_many :citations
   validates_uniqueness_of :url
   validates_presence_of :url
   validates_presence_of :name
@@ -37,6 +37,7 @@ class Tool < ActiveRecord::Base
     response['stargazers_count'] = response['followers_count']
     response['owner_login'] = response['owner']
     response['owner_url'] = "https://bitbucket.org/#{response['owner_login']}"
+    self.name = response['name']
     self.metadata = response
     true
   end
@@ -45,7 +46,11 @@ class Tool < ActiveRecord::Base
     if repo_name == url
       self.url = 'https://github.com/' + url
     end
-    repo = OCTOKIT.repo(repo_name)
+    begin
+      repo = OCTOKIT.repo(repo_name)
+    rescue
+      return false
+    end
     metadata = repo.to_hash
     metadata[:owner] = metadata[:owner].to_hash
     metadata[:owner_login] = metadata[:owner][:login]
@@ -54,6 +59,8 @@ class Tool < ActiveRecord::Base
       metadata[:organization] = metadata[:organization].to_hash
     end
     self.metadata = metadata
+    self.name = metadata[:name]
     true
   end
+
 end
