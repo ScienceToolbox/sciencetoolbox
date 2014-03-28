@@ -10,6 +10,19 @@
   }
 }
 
+nav.top-bar li.name {
+  h1 a {
+    display: inline;
+  }
+  img {
+    display: inline;
+  }
+}
+
+nav.top-bar {
+  margin-bottom: 2em;
+}
+
 ul.tools, ul.citations {
   li {
     margin-bottom: 1em;
@@ -31,13 +44,17 @@ ul.tools, ul.citations {
 }
 
 
-body {
-  margin-top: 2em;
-}
-h1 {
+// body {
+//   margin-top: 2em;
+// }
+h1.headline {
   margin-bottom: 2em;
 }
 
+h3.quickstats {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
 img#logo {
   height: 289px;
   width: 300px;

@@ -31,10 +31,13 @@ class User < ActiveRecord::Base
 
   def self.find_for_github_oauth(auth)
      data = auth['info']
-     if user = User.find_by_email_and_provider(data["email"], 'github')
+     if user = User.find_by_uid_and_provider(auth["uid"], 'github')
         user.update_attribute(:oauth_token, auth["credentials"]["token"])
         user
      else
+        unless data["email"]
+          data["email"] = auth["uid"] + '@github.user'
+        end
         User.create!(
           provider: 'github',
           uid: auth['uid'],
@@ -95,6 +98,9 @@ class User < ActiveRecord::Base
       #  :following=>4,
       #  :created_at=>2010-06-25 19:10:12 UTC,
       #  :updated_at=>2014-02-24 15:52:31 UTC}
+      unless user[:email].present?
+        user[:email] = user[:login] + '@github.user'
+      end
       User.create!(
         provider: provider,
         uid: user[:id],

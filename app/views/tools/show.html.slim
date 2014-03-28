@@ -13,7 +13,7 @@
 - @tool.tags.each do |tag|
   span.round.label= link_to tag.name, tag_path(tag.name)
 
-h3.text-center #{@tool.metadata['stargazers_count']} stars and #{@tool.metadata['forks_count']} forks, with #{@tool.citations.size} citations
+h3.quickstats.text-center #{@tool.metadata['stargazers_count']} stars and #{@tool.metadata['forks_count']} forks, with #{@tool.citations.size} citations
 
 h2 Citations
 - if @tool.citations.size == 0
