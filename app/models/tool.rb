@@ -28,48 +28,47 @@ class Tool < ActiveRecord::Base
   end
 
   def check_health
-    case provider
-    when :bitbucket
-      begin
+    begin
+      case provider
+      when :bitbucket
         data = JSON.parse RestClient.get "https://bitbucket.org/api/1.0/repositories/#{repo_name}/src/master/"
-      rescue
-        return true
-      end
-      path_key = 'path'
-      directories = []
-      data['directories'].each {|directory| directories.push({'path' => directory})}
-      contents = directories + data['files']
-      path_key = 'name'
-    when :github
-      contents = JSON.parse RestClient.get "https://api.github.com/repos/#{repo_name}/contents",
-      {:params =>
-        {:client_id => ENV['ST_GITHUB_CLIENT_ID'],
-        'client_secret' => ENV['ST_GITHUB_CLIENT_SECRET']
+        path_key = 'path'
+        directories = []
+        data['directories'].each {|directory| directories.push({'path' => directory})}
+        contents = directories + data['files']
+        path_key = 'name'
+      when :github
+        contents = JSON.parse RestClient.get "https://api.github.com/repos/#{repo_name}/contents",
+        {:params =>
+          {:client_id => ENV['ST_GITHUB_CLIENT_ID'],
+          'client_secret' => ENV['ST_GITHUB_CLIENT_SECRET']
+          }
         }
-      }
-      path_key = 'name'
-    end
-    _readme = false
-    _license = false
-    _virtualization = false
-    _ci = false
-    _test = false
+        path_key = 'name'
+      end
+      _readme = false
+      _license = false
+      _virtualization = false
+      _ci = false
+      _test = false
 
-    contents.each do |content|
-      print "#{content}\n"
-      contentname = content[path_key].chomp(File.extname(content[path_key])).downcase
-      if _readme == false then _readme = ['readme', 'install', 'notes'].include? contentname end
-      if _license == false then _license = ['license', 'copying', 'gpl3'].include? contentname end
-      if _virtualization == false then _virtualization = ['Vagrantfile', 'Dockerfile'].include? contentname end
-      if _ci == false then _ci = ['.travis', '.drone'].include? contentname end
-      if _test == false then _test = ['test'].include? contentname end
-    end
+      contents.each do |content|
+        print "#{content}\n"
+        contentname = content[path_key].chomp(File.extname(content[path_key])).downcase
+        if _readme == false then _readme = ['readme', 'install', 'notes'].include? contentname end
+        if _license == false then _license = ['license', 'copying', 'gpl3'].include? contentname end
+        if _virtualization == false then _virtualization = ['Vagrantfile', 'Dockerfile'].include? contentname end
+        if _ci == false then _ci = ['.travis', '.drone'].include? contentname end
+        if _test == false then _test = ['test'].include? contentname end
+      end
 
-    self.readme = _readme
-    self.license = _license
-    self.virtualization = _virtualization
-    self.ci = _ci
-    self.test = _test
+      self.readme = _readme
+      self.license = _license
+      self.virtualization = _virtualization
+      self.ci = _ci
+      self.test = _test
+    rescue
+    end
     true
   end
 
