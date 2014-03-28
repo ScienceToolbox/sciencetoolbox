@@ -4,6 +4,9 @@ li
       = link_to tool.name, tool_path(tool)
       |  by&nbsp;
       = link_to tool.metadata['owner_login'], tool.metadata['owner_url']
+      span.stars
+        | &nbsp;
+        = render 'tools/reproducibility_checks', tool: tool
       .show-for-small-only
         span.stargazers_count
           i.fa.fa-star
@@ -11,8 +14,8 @@ li
         span.forks_count
           i.fa.fa-code-fork
           = tool.metadata['forks_count']
-
     .small-4.medium-2.medium-push-5.large-2.large-push-5.columns.hide-for-small-only
+
       span.stargazers_count
         i.fa.fa-star
         = tool.metadata['stargazers_count']

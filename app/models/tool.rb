@@ -5,11 +5,16 @@ class Tool < ActiveRecord::Base
   before_validation :get_metadata, :unless => Proc.new { |m| m.persisted? }
   before_validation :check_health, :unless => Proc.new { |m| m.persisted? }
   before_validation :calculate_reproducibility_score, :unless => Proc.new { |m| m.persisted? }
+  after_save :invalidate_cache
   has_and_belongs_to_many :users
   has_many :citations
   validates_uniqueness_of :url
   validates_presence_of :url
   validates_presence_of :name
+
+  def invalidate_cache
+    Rails.cache.delete('giant_bear')
+  end
 
   def repo_name
     case url
@@ -25,7 +30,11 @@ class Tool < ActiveRecord::Base
   def check_health
     case provider
     when :bitbucket
-      data = JSON.parse RestClient.get "https://bitbucket.org/api/1.0/repositories/#{repo_name}/src/default/"
+      begin
+        data = JSON.parse RestClient.get "https://bitbucket.org/api/1.0/repositories/#{repo_name}/src/master/"
+      rescue
+        return true
+      end
       path_key = 'path'
       directories = []
       data['directories'].each {|directory| directories.push({'path' => directory})}

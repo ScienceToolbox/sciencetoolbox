@@ -53,6 +53,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    dalli (2.7.0)
     devise (3.2.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -232,6 +233,7 @@ DEPENDENCIES
   capistrano-rbenv
   capistrano-unicorn
   coffee-rails (~> 4.0.0)
+  dalli
   devise
   font-awesome-sass
   foundation-rails

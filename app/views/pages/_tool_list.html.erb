@@ -1,0 +1,11 @@
+<% cache('giant_bear') do %>
+  <ul class="tools">
+    <%- tools.each do |tool| %>
+      <% begin %>
+        <%= render 'tools/tool', tool: tool %>
+      <% rescue %>
+        <%= nil %>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>

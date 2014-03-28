@@ -28,7 +28,7 @@
       <!-- Right Nav Section -->
       <ul class="right">
         <%- if current_user %>
-          <li><%= link_to_unless_current 'Your profile', user_profile_path(current_user) %></li>
+          <li><%= link_to 'Your profile', user_profile_path(current_user) %></li>
           <li><%= link_to 'Logout', destroy_user_session_path %></li>
 
         <%- else %>

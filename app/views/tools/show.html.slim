@@ -45,10 +45,7 @@ ul.reproducibility_checklist
     - else
         i.fa.fa-times-circle
   li
-    - @tool.reproducibility_score.times do
-      i.fa.fa-star
-    - (5 - @tool.reproducibility_score).times do
-      i.fa.fa-star-o
+    = render 'reproducibility_checks', tool: @tool
 
 
 h3.quickstats.text-center #{@tool.metadata['stargazers_count']} stars and #{@tool.metadata['forks_count']} forks, with #{@tool.citations.size} citations

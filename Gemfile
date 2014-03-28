@@ -30,6 +30,8 @@ gem 'omniauth-twitter'
 gem 'omniauth-github'
 gem 'omniauth-bitbucket'
 gem 'rest_client'
+gem 'dalli'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 #gem 'therubyracer', platforms: :ruby
 

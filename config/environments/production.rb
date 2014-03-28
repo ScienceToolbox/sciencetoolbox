@@ -77,4 +77,6 @@ Sciencetoolbox::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+  config.cache_store = :dalli_store, 'localhost',
+    { :namespace => 'sciencetoolbox', :expires_in => 7.days, :compress => true }
 end
