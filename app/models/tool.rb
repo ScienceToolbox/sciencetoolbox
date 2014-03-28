@@ -5,6 +5,7 @@ class Tool < ActiveRecord::Base
   before_validation :get_metadata, :unless => Proc.new { |m| m.persisted? }
   before_validation :check_health, :unless => Proc.new { |m| m.persisted? }
   before_validation :calculate_reproducibility_score, :unless => Proc.new { |m| m.persisted? }
+
   after_save :invalidate_cache
   has_and_belongs_to_many :users
   has_many :citations
@@ -36,7 +37,6 @@ class Tool < ActiveRecord::Base
         directories = []
         data['directories'].each {|directory| directories.push({'path' => directory})}
         contents = directories + data['files']
-        path_key = 'name'
       when :github
         contents = JSON.parse RestClient.get "https://api.github.com/repos/#{repo_name}/contents",
         {:params =>
@@ -67,7 +67,8 @@ class Tool < ActiveRecord::Base
       self.virtualization = _virtualization
       self.ci = _ci
       self.test = _test
-    rescue
+    rescue Exception => e
+      puts e
     end
     true
   end
@@ -107,7 +108,7 @@ class Tool < ActiveRecord::Base
       return false
     end
 
-    return false if response.status != [200, 'OK']
+    return false if response.status != ['200', 'OK']
 
     response = JSON.parse(response.read)
     response['stargazers_count'] = response['followers_count']

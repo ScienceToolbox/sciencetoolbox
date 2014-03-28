@@ -3,6 +3,15 @@ require 'json'
 require 'open-uri'
 
 namespace :process do
+  desc "Assign reproducibility scores"
+  task assign_reproducibility_score: :environment do
+    Tool.find_each do |tool|
+      tool.check_health
+      tool.calculate_reproducibility_score
+      tool.save
+    end
+  end
+
   desc "Process EuropePMC"
   task europe_pmc: :environment do
     sources = ['bitbucket.org', 'github.com']
@@ -63,7 +72,6 @@ namespace :process do
               puts "Created tool: #{tool.name}." if tool.persisted?
             end
             puts "Looking at citation #{doi}."
-
             next unless tool.persisted?
             next if Citation.find_by_doi_and_tool_id(doi, tool.id)
 
