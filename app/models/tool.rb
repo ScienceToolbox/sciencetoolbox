@@ -1,6 +1,6 @@
 class Tool < ActiveRecord::Base
   acts_as_taggable
-  before_validation :get_metadata
+  before_validation :get_metadata, :unless => Proc.new { |m| m.persisted? }
 
   has_and_belongs_to_many :users
   has_many :citations
@@ -32,13 +32,25 @@ class Tool < ActiveRecord::Base
   end
 
   def get_bitbucket_metadata
-    uri = URI('https://bitbucket.org/api/1.0/repositories/' + repo_name)
-    response = JSON.parse(Net::HTTP.get(uri)) # => String
+    begin
+      uri = URI('https://bitbucket.org/api/1.0/repositories/' + repo_name)
+    rescue
+      return false
+    end
+
+    response = Net::HTTP.get(uri)
+    if response == 'Forbidden'
+      return false
+    else
+      response = JSON.parse(response)
+    end
     response['stargazers_count'] = response['followers_count']
     response['owner_login'] = response['owner']
     response['owner_url'] = "https://bitbucket.org/#{response['owner_login']}"
     self.name = response['name']
     self.metadata = response
+    self.description = metadata['description']
+    self.tag_list << metadata['language']
     true
   end
 
@@ -60,6 +72,8 @@ class Tool < ActiveRecord::Base
     end
     self.metadata = metadata
     self.name = metadata[:name]
+    self.description = metadata[:description]
+    self.tag_list << metadata[:language]
     true
   end
 

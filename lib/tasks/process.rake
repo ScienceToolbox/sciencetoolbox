@@ -1,7 +1,102 @@
 require 'nokogiri'
 require 'json'
+require 'open-uri'
 
 namespace :process do
+  desc "Process EuropePMC"
+  task europe_pmc: :environment do
+    sources = ['bitbucket.org', 'github.com']
+    sources.each do |source|
+      page = 1
+      results = ['woot']
+      while !results.empty?
+        user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1907.0 Safari/537.36"
+        api_url = "http://www.ebi.ac.uk/europepmc/webservices/rest/search/query=#{source}&dataset=fulltext&page=#{page}&resultType=core&format=json"
+        response = open(api_url, 'User-Agent' => user_agent).read
+        results = JSON.parse(response)['resultList']['result']
+        results.each do |result|
+          title = result['title']
+          doi = result['doi']
+          next unless doi
+          authors = result['authorList']['author'].map{|a| a['fullName']}.join(', ')
+          journal = result['journalInfo']['journal']['title']
+          paper_url = doi = 'http://dx.doi.org/' + doi
+
+          begin
+            possible_url = result['fullTextUrlList']['fullTextUrl'].
+              select{|u| u['availability'] == 'Free' && u['documentStyle'] == 'html' ||
+                u['availability'] == 'Open access' && u['documentStyle'] == 'html'
+              }
+            paper = Nokogiri::HTML(open(possible_url, 'User-Agent' => user_agent).read)
+            paper = paper.text + result['abstractText']
+          rescue
+            paper = result['abstractText']
+          end
+
+          begin
+            paper = Nokogiri::HTML(open(paper_url, 'User-Agent' => user_agent).read)
+            paper = paper.text + result['abstractText']
+          rescue
+            paper = result['abstractText']
+          end
+
+          next unless paper
+
+          repos = paper.scan(/(?:https?\:\/\/)#{source}\/([^),.\/]+)\/([^,\s)(\/]+)\/?([^ )]*)/)
+          repos.each do |repo|
+
+            username = repo[0].gsub(/\p{Z}/, '')
+            repository_name = repo[1].gsub(/\.$/, '').gsub(/[\p{Z}​​]/, '')
+            puts "Looking at #{source} repo: #{username}/#{repository_name}"
+
+            citation = Citation.new
+            repo_url = "https://#{source}/#{username}/#{repository_name}"
+            tool = Tool.find_by_url(repo_url)
+            if tool
+              citation.tool = tool
+              puts "Found existing tool: #{citation.tool.name}"
+            else
+              citation.tool = Tool.create(url: repo_url)
+              puts "Created tool: #{citation.tool.name}." if citation.tool.persisted?
+            end
+            puts "Looking at citation #{doi}."
+
+            next unless citation.tool.persisted?
+            next if Citation.find_by_doi_and_tool_id(doi, tool.id)
+
+            metadata = open(doi, 'Accept' => 'application/json').read
+            metadata = JSON.parse(metadata)
+
+            citation.authors = authors
+            citation.metadata = metadata
+            if metadata['issued']
+              date_parts = metadata['issued']['date-parts'].first
+              if date_parts.size < 3
+                citation.published_at = DateTime.
+                  parse("1-1-#{date_parts[0]}")
+              else
+                citation.published_at = DateTime.
+                  parse("#{date_parts[2]}-#{date_parts[1]}-#{date_parts[0]}")
+              end
+            end
+            citation.title = metadata['title']
+            citation.doi = doi
+            citation.journal = metadata['container-title']
+            citation.tool.tag_list << metadata['subject']
+            citation.tool.save
+            citation.save
+            puts "Created citation: #{citation.doi}." if citation.persisted?
+          end
+        end
+        page += 1
+
+      end
+
+    end
+
+
+  end
+
   desc "Process Google Scholar results"
   task gs: :environment do
     html = Nokogiri::HTML(open('full.html'))
