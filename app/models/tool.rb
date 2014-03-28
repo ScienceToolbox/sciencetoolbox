@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class Tool < ActiveRecord::Base
   acts_as_taggable
   before_validation :get_metadata, :unless => Proc.new { |m| m.persisted? }
@@ -38,12 +40,13 @@ class Tool < ActiveRecord::Base
       return false
     end
 
-    response = Net::HTTP.get(uri)
-    if response == 'Forbidden'
+    begin
+      response = open(uri)
+    rescue
       return false
-    else
-      response = JSON.parse(response)
     end
+
+    response = JSON.parse(response)
     response['stargazers_count'] = response['followers_count']
     response['owner_login'] = response['owner']
     response['owner_url'] = "https://bitbucket.org/#{response['owner_login']}"

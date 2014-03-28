@@ -10,6 +10,7 @@ namespace :process do
       page = 1
       results = ['woot']
       while !results.empty?
+        puts "Processing page #{page}."
         user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1907.0 Safari/537.36"
         api_url = "http://www.ebi.ac.uk/europepmc/webservices/rest/search/query=#{source}&dataset=fulltext&page=#{page}&resultType=core&format=json"
         response = open(api_url, 'User-Agent' => user_agent).read
@@ -56,12 +57,13 @@ namespace :process do
               citation.tool = tool
               puts "Found existing tool: #{citation.tool.name}"
             else
-              citation.tool = Tool.create(url: repo_url)
-              puts "Created tool: #{citation.tool.name}." if citation.tool.persisted?
+              tool = Tool.create(url: repo_url)
+              citation.tool = tool
+              puts "Created tool: #{tool.name}." if tool.persisted?
             end
             puts "Looking at citation #{doi}."
 
-            next unless citation.tool.persisted?
+            next unless tool.persisted?
             next if Citation.find_by_doi_and_tool_id(doi, tool.id)
 
             metadata = open(doi, 'Accept' => 'application/json').read

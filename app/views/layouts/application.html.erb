@@ -15,7 +15,19 @@
   <body>
     <div class="row">
       <div class="small-12">
-        <%= link_to 'Sign up', new_user_registration_path %>
+        <div class="row">
+          <div class="small-12 text-center">
+            <%- if current_user %>
+              <%= link_to_unless_current 'Your profile', user_profile_path(current_user) %>
+              <%= link_to 'Logout', destroy_user_session_path(current_user) %>
+
+            <%- else %>
+              <%= link_to 'Login', new_user_session_path %>
+              <%= link_to 'Sign up', new_user_registration_path %>
+            <%- end %>
+          </div>
+        </div>
+
         <%= yield %>
       </div>
     </div>
