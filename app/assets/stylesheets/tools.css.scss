@@ -64,3 +64,19 @@ img#logo-small {
   height: 96px;
   width: 100px;
 }
+
+
+ul.reproducibility_checklist {
+  list-style: none;
+  margin-left: 0;
+  li {
+    margin-right: 1em;
+    display: inline;
+  }
+  .true {
+    color: #8cc63f;
+  }
+  .false {
+    color: #c1272d;
+  }
+}

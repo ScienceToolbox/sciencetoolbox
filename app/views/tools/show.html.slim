@@ -13,6 +13,44 @@
 - @tool.tags.each do |tag|
   span.round.label= link_to tag.name, tag_path(tag.name)
 
+ul.reproducibility_checklist
+  li class=@tool.readme
+    span README 
+    - if @tool.readme
+        i.fa.fa-check-circle
+    - else
+        i.fa.fa-times-circle
+  li class=@tool.license
+    span LICENSE 
+    - if @tool.license
+        i.fa.fa-check-circle
+    - else
+        i.fa.fa-times-circle
+  li class=@tool.test
+    span Tests 
+    - if @tool.test
+        i.fa.fa-check-circle
+    - else
+        i.fa.fa-times-circle
+  li class=@tool.virtualization
+    span Virtualization 
+    - if @tool.virtualization
+        i.fa.fa-check-circle
+    - else
+        i.fa.fa-times-circle
+  li class=@tool.ci
+    span Continuous integration 
+    - if @tool.ci
+        i.fa.fa-check-circle
+    - else
+        i.fa.fa-times-circle
+  li
+    - @tool.reproducibility_score.times do
+      i.fa.fa-star
+    - (5 - @tool.reproducibility_score).times do
+      i.fa.fa-star-o
+
+
 h3.quickstats.text-center #{@tool.metadata['stargazers_count']} stars and #{@tool.metadata['forks_count']} forks, with #{@tool.citations.size} citations
 
 h2 Citations

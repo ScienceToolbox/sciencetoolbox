@@ -100,6 +100,7 @@ GEM
     net-ssh (2.7.0)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
+    netrc (0.7.7)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     oauth (0.4.7)
@@ -159,6 +160,8 @@ GEM
     rake (10.1.1)
     rdoc (4.1.1)
       json (~> 1.4)
+    rest_client (1.7.3)
+      netrc (~> 0.7.7)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
@@ -243,6 +246,7 @@ DEPENDENCIES
   pg
   pry
   rails (= 4.0.2)
+  rest_client
   rspec
   sass-rails (~> 4.0.0)
   sdoc
