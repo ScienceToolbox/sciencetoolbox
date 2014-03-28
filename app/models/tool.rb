@@ -1,9 +1,14 @@
+require 'open-uri'
+
 class Tool < ActiveRecord::Base
   acts_as_taggable
-  before_save :get_metadata
+  before_validation :get_metadata, :unless => Proc.new { |m| m.persisted? }
 
+  has_and_belongs_to_many :users
+  has_many :citations
   validates_uniqueness_of :url
   validates_presence_of :url
+  validates_presence_of :name
 
   def repo_name
     case url
@@ -29,12 +34,28 @@ class Tool < ActiveRecord::Base
   end
 
   def get_bitbucket_metadata
-    uri = URI('https://bitbucket.org/api/1.0/repositories/' + repo_name)
-    response = JSON.parse(Net::HTTP.get(uri)) # => String
+    begin
+      uri = URI('https://bitbucket.org/api/1.0/repositories/' + repo_name)
+    rescue
+      return false
+    end
+
+    begin
+      response = open(uri)
+    rescue
+      return false
+    end
+
+    return false if response.status != [200, 'OK']
+
+    response = JSON.parse(response.read)
     response['stargazers_count'] = response['followers_count']
     response['owner_login'] = response['owner']
     response['owner_url'] = "https://bitbucket.org/#{response['owner_login']}"
+    self.name = response['name']
     self.metadata = response
+    self.description = metadata['description']
+    self.tag_list << metadata['language']
     true
   end
 
@@ -42,7 +63,11 @@ class Tool < ActiveRecord::Base
     if repo_name == url
       self.url = 'https://github.com/' + url
     end
-    repo = OCTOKIT.repo(repo_name)
+    begin
+      repo = OCTOKIT.repo(repo_name)
+    rescue
+      return false
+    end
     metadata = repo.to_hash
     metadata[:owner] = metadata[:owner].to_hash
     metadata[:owner_login] = metadata[:owner][:login]
@@ -51,6 +76,18 @@ class Tool < ActiveRecord::Base
       metadata[:organization] = metadata[:organization].to_hash
     end
     self.metadata = metadata
+    self.name = metadata[:name]
+    self.description = metadata[:description]
+    self.tag_list << metadata[:language]
     true
+  end
+
+  def provider
+    case url
+    when /github.com/
+      :github
+    when /bitbucket.org/
+      :bitbucket
+    end
   end
 end

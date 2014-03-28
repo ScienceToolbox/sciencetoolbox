@@ -1,0 +1,12 @@
+li
+  .row
+    .small-12.medium-8.columns
+      = link_to citation.title, citation.doi
+      |  by&nbsp;
+      = citation.authors
+
+    .small-12.medium-4.columns
+      - if citation.published_at
+        == "#{citation.journal} (#{citation.published_at.strftime("%b %Y")})"
+      - else
+        == "#{citation.journal}"

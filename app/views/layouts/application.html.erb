@@ -13,30 +13,49 @@
   </head>
 
   <body>
+    <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <li class="name">
+        <h1>
+          <%= link_to image_tag('science-toolbox-logo-mini.png') + ' ScienceToolbox'.html_safe, root_path %>
+          </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+    </ul>
 
-    <%= yield %>
-    <%= javascript_include_tag "application" %>
+    <section class="top-bar-section">
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <%- if current_user %>
+          <li><%= link_to_unless_current 'Your profile', user_profile_path(current_user) %></li>
+          <li><%= link_to 'Logout', destroy_user_session_path %></li>
+
+        <%- else %>
+          <li><%= link_to 'Login', new_user_session_path %></li>
+          <li><%= link_to 'Sign up', new_user_registration_path %></li>
+        <%- end %>
+      </ul>
+
+      <!-- Left Nav Section -->
+      <ul class="left">
+        <!-- <li><a href="#">Left Nav Button</a></li> -->
+      </ul>
+    </section>
+  </nav>
+    <div class="row">
+      <div class="small-12">
+        <%= yield %>
+      </div>
+    </div>
+
     <div class="row github">
       <div class="small-12 columns text-center">
-<!--         <script>
-          // Include the UserVoice JavaScript SDK (only needed once on a page)
-          UserVoice=window.UserVoice||[];(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/jX3vESmDSSEcYF4kUvg.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
-
-          // Set colors
-          UserVoice.push(['set', {
-            accent_color: '#448dd6',
-            trigger_color: 'white',
-            trigger_background_color: 'rgba(46, 49, 51, 0.6)'
-          }]);
-
-          // Add default trigger to the bottom-right corner of the window:
-          UserVoice.push(['addTrigger', { mode: 'contact', trigger_position: 'bottom-right' }]);
-        </script>
- -->        <a href="https://twitter.com/ScienceToolbox" class="twitter-follow-button" data-show-count="false">Follow @ScienceToolbox</a>
+        <a href="https://twitter.com/ScienceToolbox" class="twitter-follow-button" data-show-count="false">Follow @ScienceToolbox</a>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
         <iframe src="http://ghbtns.com/github-btn.html?user=jure&repo=sciencetoolbox&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
       </div>
     </div>
+    <%= javascript_include_tag "application" %>
     <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
