@@ -14,7 +14,7 @@ class Tool < ActiveRecord::Base
   validates_presence_of :name
 
   def invalidate_cache
-    Rails.cache.delete('giant_bear')
+    Rails.cache.clear
   end
 
   def repo_name
