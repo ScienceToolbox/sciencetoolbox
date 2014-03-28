@@ -46,7 +46,9 @@ class Tool < ActiveRecord::Base
       return false
     end
 
-    response = JSON.parse(response)
+    return false if response.status != [200, 'OK']
+
+    response = JSON.parse(response.read)
     response['stargazers_count'] = response['followers_count']
     response['owner_login'] = response['owner']
     response['owner_url'] = "https://bitbucket.org/#{response['owner_login']}"
@@ -80,4 +82,12 @@ class Tool < ActiveRecord::Base
     true
   end
 
+  def provider
+    case url
+    when /github.com/
+      :github
+    when /bitbucket.org/
+      :bitbucket
+    end
+  end
 end

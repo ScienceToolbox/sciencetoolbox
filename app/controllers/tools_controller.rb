@@ -6,6 +6,10 @@ class ToolsController < ApplicationController
     redirect_to root_url
   end
 
+  def show
+    @tool = Tool.find(params[:id])
+  end
+
   private
 
   def tool_params

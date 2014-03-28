@@ -1,15 +1,15 @@
 .row
-  .small-12.large-8.columns
+  .small-12.large-10.columns
     h1
       span.avatar= image_tag @user.avatar, width: 64
-      |  #{@user.nickname}'s profile
-  .small-12.large-4.columns.text-right
+      |  #{@user.nickname}'s code
+  .small-12.large-2.columns.text-right
     - case @user.provider
     - when 'github'
       = link_to(image_tag('github.png'), 'https://github.com/' + @user.nickname)
     - when 'bitbucket'
       = link_to(image_tag('bitbucket.png'), 'https://bitbucket.org/' + @user.nickname)
-h3.text-center #{@user.tools.map{|t| t.metadata['stargazers_count'].to_i}.sum} stars and #{@user.tools.map{|t| t.metadata['forks_count'].to_i}.sum}, with #{@user.citations.size} citations for #{pluralize(@user.tools.count,'tool')}.
+h3.text-center #{@user.tools.map{|t| t.metadata['stargazers_count'].to_i}.sum} stars and #{@user.tools.map{|t| t.metadata['forks_count'].to_i}.sum} forks, with #{@user.citations.size} citations for #{pluralize(@user.tools.count,'tool')}.
 h2 Tools
 ul.tools
   - @tools.each do |tool|
@@ -19,5 +19,6 @@ h2 Citations
 - if @user.citations.size == 0
   p Nothing here yet. Never give up.
 - else
-  - @user.citations.each do |cit|
-    p= cit.doi
+  ul.citations
+    - @user.citations.each do |citation|
+        = render 'citations/citation', citation: citation

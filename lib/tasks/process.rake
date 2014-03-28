@@ -5,9 +5,10 @@ require 'open-uri'
 namespace :process do
   desc "Process EuropePMC"
   task europe_pmc: :environment do
-    sources = ['bitbucket.org', 'github.com']
+    #sources = ['bitbucket.org', 'github.com']
+    sources = ['github.com']
     sources.each do |source|
-      page = 1
+      page = 9
       results = ['woot']
       while !results.empty?
         puts "Processing page #{page}."
@@ -66,7 +67,11 @@ namespace :process do
             next unless tool.persisted?
             next if Citation.find_by_doi_and_tool_id(doi, tool.id)
 
-            metadata = open(doi, 'Accept' => 'application/json').read
+            begin
+              metadata = open(doi, 'Accept' => 'application/json').read
+            rescue
+              next
+            end
             metadata = JSON.parse(metadata)
 
             citation.authors = authors
@@ -84,7 +89,9 @@ namespace :process do
             citation.title = metadata['title']
             citation.doi = doi
             citation.journal = metadata['container-title']
-            citation.tool.tag_list << metadata['subject']
+            if metadata['subject']
+              citation.tool.tag_list << metadata['subject'].map{|s| s.gsub(/\(.+\)/, '')}
+            end
             citation.tool.save
             citation.save
             puts "Created citation: #{citation.doi}." if citation.persisted?
@@ -150,19 +157,38 @@ namespace :process do
               ref = open("http://search.labs.crossref.org/dois?q=#{URI.escape(title + ' ' + authors)}").read
               ref = JSON.parse(ref)
 
-              filtered = ref.select{|r| r['normalizedScore'] == 100 || r['score'] > 1}.first
+              filtered = ref.select{|r| r['normalizedScore'] == 100 || r['score'] > 3}.first
               if filtered
                 puts "Found citation #{filtered}"
-                citation.authors = authors
-                citation.metadata = filtered
-                if filtered['year']
-                  citation.published_at = DateTime.parse("1-1-#{filtered['year']}")
-                elsif year
-                  citation.published_at = DateTime.parse("1-1-#{year.to_i}")
+                next if Citation.find_by_doi_and_tool_id(filtered['doi'], tool.id)
+                metadata = open(filtered['doi'], 'Accept' => 'application/json').read
+                metadata = JSON.parse(metadata)
+                citation.metadata = metadata
+
+                if metadata['author']
+                  citation.authors = metadata['author'].map do |a|
+                    a['given'] + ' ' + a['family']
+                  end.join(', ')
                 end
-                citation.title = filtered['title']
+                if metadata['issued'] && metadata['issued']['date-parts'].flatten != [nil]
+                  date_parts = metadata['issued']['date-parts'].first
+                  if date_parts.size < 3
+                    citation.published_at = DateTime.
+                      parse("1-1-#{date_parts[0]}")
+                  elsif date_parts.size == 3
+                    citation.published_at = DateTime.
+                      parse("#{date_parts[2]}-#{date_parts[1]}-#{date_parts[0]}")
+                  end
+                else
+                  citation.published_at = DateTime.parse("1-1-#{year}")
+                end
+                citation.title = metadata['title']
                 citation.doi = filtered['doi']
-                citation.journal = journal
+                citation.journal = metadata['container-title']
+                if metadata['subject']
+                  citation.tool.tag_list << metadata['subject'].map{|s| s.gsub(/\(.+\)/, '')}
+                  citation.tool.save
+                end
 
                 citation.save
                 puts citation.to_yaml
@@ -170,7 +196,8 @@ namespace :process do
             end
           end
         end
-      rescue
+      rescue Exception => e
+        # binding.pry
         puts "Failed #{result}"
       end
     end

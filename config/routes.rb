@@ -14,6 +14,8 @@ Sciencetoolbox::Application.routes.draw do
   resources :users do
     get 'profile' => 'users/profiles#show'
   end
+
+  get ':provider/:username' => 'users/profiles#show', as: :profile
   # resources :profiles
 
   # The priority is based upon order of creation: first created -> highest priority.

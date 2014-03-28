@@ -3,7 +3,14 @@ class Users::ProfilesController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:user_id])
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+    elsif params[:provider] && params[:username]
+      @user = User.find_or_initialize_from_provider_and_username(
+        params[:provider],
+        params[:username]
+      )
+    end
     @tools = @user.tools
   end
 end
