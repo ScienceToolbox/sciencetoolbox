@@ -3,6 +3,11 @@
     .text-center
       = image_tag 'science-toolbox-logo.png', id: 'logo'
       h1.headline ScienceToolbox
+.row
+  .small-12.columns
+    p.text-center We're currently forced to hard limit the number of results shown on this page. Sorry, we'll fix it soon! Search is coming too.
+    br
+    br
   = render 'pages/tool_list', tools: @tools
 .row.form
   .small-12.columns
