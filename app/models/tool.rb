@@ -4,7 +4,7 @@ class Tool < ActiveRecord::Base
   acts_as_taggable
   before_validation :get_metadata, :unless => Proc.new { |m| m.persisted? }
   before_validation :check_health, :unless => Proc.new { |m| m.persisted? }
-
+  before_validation :calculate_reproducibility_score, :unless => Proc.new { |m| m.persisted? }
   has_and_belongs_to_many :users
   has_many :citations
   validates_uniqueness_of :url
@@ -64,14 +64,14 @@ class Tool < ActiveRecord::Base
     true
   end
 
-  def reproducibility_score
-    score = 0
-    score += 1 if readme
-    score += 1 if license
-    score += 1 if virtualization
-    score += 1 if ci
-    score += 1 if test
-    return score
+  def calculate_reproducibility_score
+    self.reproducibility_score = 0
+    self.reproducibility_score += 1 if readme
+    self.reproducibility_score += 1 if license
+    self.reproducibility_score += 1 if virtualization
+    self.reproducibility_score += 1 if ci
+    self.reproducibility_score += 1 if test
+    true
   end
 
   def get_metadata

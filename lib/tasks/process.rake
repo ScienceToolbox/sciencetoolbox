@@ -5,10 +5,10 @@ require 'open-uri'
 namespace :process do
   desc "Process EuropePMC"
   task europe_pmc: :environment do
-    #sources = ['bitbucket.org', 'github.com']
-    sources = ['github.com']
+    sources = ['bitbucket.org', 'github.com']
+    #sources = ['github.com']
     sources.each do |source|
-      page = 9
+      page = 1
       results = ['woot']
       while !results.empty?
         puts "Processing page #{page}."
