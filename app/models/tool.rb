@@ -57,7 +57,7 @@ class Tool < ActiveRecord::Base
         contentname = content[path_key].chomp(File.extname(content[path_key])).downcase
         if _readme == false then _readme = ['readme', 'install', 'notes'].include? contentname end
         if _license == false then _license = ['license', 'copying', 'gpl3'].include? contentname end
-        if _virtualization == false then _virtualization = ['Vagrantfile', 'Dockerfile'].include? contentname end
+        if _virtualization == false then _virtualization = ['vagrantfile', 'dockerfile'].include? contentname end
         if _ci == false then _ci = ['.travis', '.drone'].include? contentname end
         if _test == false then _test = ['test'].include? contentname end
       end
