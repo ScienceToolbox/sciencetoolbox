@@ -6,7 +6,6 @@
 development:
   adapter: postgresql
   database: st
-  password: st
   user: st
   pool: 5
   timeout: 5000
@@ -18,11 +17,12 @@ development:
 test:
   adapter: postgresql
   database: st_test
-  password: st_test
   user: st
-  pool: 5
+  pool: 5000
   timeout: 5000
   host: localhost
+  encoding: utf-8
+  template: template0
 
 production:
   adapter: postgresql

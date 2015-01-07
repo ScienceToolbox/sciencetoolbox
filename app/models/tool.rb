@@ -53,7 +53,6 @@ class Tool < ActiveRecord::Base
       _test = false
 
       contents.each do |content|
-        print "#{content}\n"
         contentname = content[path_key].chomp(File.extname(content[path_key])).downcase
         if _readme == false then _readme = ['readme', 'install', 'notes'].include? contentname end
         if _license == false then _license = ['license', 'copying', 'gpl3'].include? contentname end
