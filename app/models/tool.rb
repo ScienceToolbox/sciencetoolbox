@@ -1,6 +1,9 @@
 require 'open-uri'
 
 class Tool < ActiveRecord::Base
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
   acts_as_taggable
   before_validation :get_metadata, :unless => Proc.new { |m| m.persisted? }
   before_validation :check_health, :unless => Proc.new { |m| m.persisted? }

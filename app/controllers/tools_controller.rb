@@ -16,6 +16,10 @@ class ToolsController < ApplicationController
     end
   end
 
+  def search
+    @tools = Tool.search(params[:query]).records.all
+  end
+
   def create
     @tool = Tool.new(tool_params)
     @tool.save

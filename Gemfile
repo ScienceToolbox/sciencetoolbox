@@ -32,6 +32,8 @@ gem 'omniauth-bitbucket'
 gem 'rest_client'
 gem 'dalli'
 gem "jbuilder"
+gem "elasticsearch-rails"
+gem "elasticsearch-model"
 
 group :test do
   gem "vcr"
