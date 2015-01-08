@@ -151,4 +151,8 @@ class Tool < ActiveRecord::Base
       :bitbucket
     end
   end
+
+  def citations_count
+    citations.count
+  end
 end
