@@ -41,5 +41,8 @@ RSpec.configure do |config|
 
   config.before(:each) do |example|
     Rails.cache.clear
+    [Tool].each do |model|
+      model.__elasticsearch__.create_index!(force: true)
+    end
   end
 end

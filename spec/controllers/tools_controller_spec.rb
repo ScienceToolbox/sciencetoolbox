@@ -36,4 +36,33 @@ describe ToolsController, vcr: true do
       expect(assigns(:tools)).to eq([@tool2, @tool])
     end
   end
+
+  describe "GET :search", vcr: true do
+    before :each do
+      @tool = Tool.create!(url: "http://github.com/astropy/astropy", tag_list: "astronomy,foobar")
+      Tool.import
+      Tool.__elasticsearch__.refresh_index!
+    end
+
+    it "finds the result" do
+      get :search, query: "astropy", format: :json
+
+      expect(response.status).to eq 200
+      expect(assigns(:tools)).to eq([@tool])
+    end
+
+    it "finds the result by its tag" do
+      get :search, query: "foobar", format: :json
+
+      expect(response.status).to eq 200
+      expect(assigns(:tools)).to eq([@tool])
+    end
+
+    it "doesn't find results for nonexistant terms" do
+      get :search, query: "arrrrr", format: :json
+
+      expect(response.status).to eq 200
+      expect(assigns(:tools)).to eq([])
+    end
+  end
 end

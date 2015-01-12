@@ -1,0 +1,202 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.github.com/repos/astropy/astropy?client_id=<GITHUB_CLIENT_ID>&client_secret=<GITHUB_CLIENT_SECRET>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.beta+json
+      User-Agent:
+      - Octokit Ruby Gem 2.7.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Sun, 11 Jan 2015 23:16:51 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4997'
+      X-Ratelimit-Reset:
+      - '1421021810'
+      Cache-Control:
+      - public, max-age=60, s-maxage=60
+      Last-Modified:
+      - Sun, 11 Jan 2015 23:05:31 GMT
+      Etag:
+      - '"1676c0005f418353df373c9739fffeb9"'
+      Vary:
+      - Accept
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.beta; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - 021DC5A8:33B4:30564C:54B30463
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - d594a23ec74671eba905bf91ef329026
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":2081289,"name":"astropy","full_name":"astropy/astropy","owner":{"login":"astropy","id":847984,"avatar_url":"https://avatars.githubusercontent.com/u/847984?v=3","gravatar_id":"","url":"https://api.github.com/users/astropy","html_url":"https://github.com/astropy","followers_url":"https://api.github.com/users/astropy/followers","following_url":"https://api.github.com/users/astropy/following{/other_user}","gists_url":"https://api.github.com/users/astropy/gists{/gist_id}","starred_url":"https://api.github.com/users/astropy/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/astropy/subscriptions","organizations_url":"https://api.github.com/users/astropy/orgs","repos_url":"https://api.github.com/users/astropy/repos","events_url":"https://api.github.com/users/astropy/events{/privacy}","received_events_url":"https://api.github.com/users/astropy/received_events","type":"Organization","site_admin":false},"private":false,"html_url":"https://github.com/astropy/astropy","description":"Repository
+        for the Astropy core package","fork":false,"url":"https://api.github.com/repos/astropy/astropy","forks_url":"https://api.github.com/repos/astropy/astropy/forks","keys_url":"https://api.github.com/repos/astropy/astropy/keys{/key_id}","collaborators_url":"https://api.github.com/repos/astropy/astropy/collaborators{/collaborator}","teams_url":"https://api.github.com/repos/astropy/astropy/teams","hooks_url":"https://api.github.com/repos/astropy/astropy/hooks","issue_events_url":"https://api.github.com/repos/astropy/astropy/issues/events{/number}","events_url":"https://api.github.com/repos/astropy/astropy/events","assignees_url":"https://api.github.com/repos/astropy/astropy/assignees{/user}","branches_url":"https://api.github.com/repos/astropy/astropy/branches{/branch}","tags_url":"https://api.github.com/repos/astropy/astropy/tags","blobs_url":"https://api.github.com/repos/astropy/astropy/git/blobs{/sha}","git_tags_url":"https://api.github.com/repos/astropy/astropy/git/tags{/sha}","git_refs_url":"https://api.github.com/repos/astropy/astropy/git/refs{/sha}","trees_url":"https://api.github.com/repos/astropy/astropy/git/trees{/sha}","statuses_url":"https://api.github.com/repos/astropy/astropy/statuses/{sha}","languages_url":"https://api.github.com/repos/astropy/astropy/languages","stargazers_url":"https://api.github.com/repos/astropy/astropy/stargazers","contributors_url":"https://api.github.com/repos/astropy/astropy/contributors","subscribers_url":"https://api.github.com/repos/astropy/astropy/subscribers","subscription_url":"https://api.github.com/repos/astropy/astropy/subscription","commits_url":"https://api.github.com/repos/astropy/astropy/commits{/sha}","git_commits_url":"https://api.github.com/repos/astropy/astropy/git/commits{/sha}","comments_url":"https://api.github.com/repos/astropy/astropy/comments{/number}","issue_comment_url":"https://api.github.com/repos/astropy/astropy/issues/comments/{number}","contents_url":"https://api.github.com/repos/astropy/astropy/contents/{+path}","compare_url":"https://api.github.com/repos/astropy/astropy/compare/{base}...{head}","merges_url":"https://api.github.com/repos/astropy/astropy/merges","archive_url":"https://api.github.com/repos/astropy/astropy/{archive_format}{/ref}","downloads_url":"https://api.github.com/repos/astropy/astropy/downloads","issues_url":"https://api.github.com/repos/astropy/astropy/issues{/number}","pulls_url":"https://api.github.com/repos/astropy/astropy/pulls{/number}","milestones_url":"https://api.github.com/repos/astropy/astropy/milestones{/number}","notifications_url":"https://api.github.com/repos/astropy/astropy/notifications{?since,all,participating}","labels_url":"https://api.github.com/repos/astropy/astropy/labels{/name}","releases_url":"https://api.github.com/repos/astropy/astropy/releases{/id}","created_at":"2011-07-21T01:33:49Z","updated_at":"2015-01-11T23:05:31Z","pushed_at":"2015-01-11T23:05:29Z","git_url":"git://github.com/astropy/astropy.git","ssh_url":"git@github.com:astropy/astropy.git","clone_url":"https://github.com/astropy/astropy.git","svn_url":"https://github.com/astropy/astropy","homepage":"www.astropy.org","size":54378,"stargazers_count":482,"watchers_count":482,"language":"Python","has_issues":true,"has_downloads":true,"has_wiki":true,"has_pages":false,"forks_count":331,"mirror_url":null,"open_issues_count":419,"forks":331,"open_issues":419,"watchers":482,"default_branch":"master","master_branch":"master","organization":{"login":"astropy","id":847984,"avatar_url":"https://avatars.githubusercontent.com/u/847984?v=3","gravatar_id":"","url":"https://api.github.com/users/astropy","html_url":"https://github.com/astropy","followers_url":"https://api.github.com/users/astropy/followers","following_url":"https://api.github.com/users/astropy/following{/other_user}","gists_url":"https://api.github.com/users/astropy/gists{/gist_id}","starred_url":"https://api.github.com/users/astropy/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/astropy/subscriptions","organizations_url":"https://api.github.com/users/astropy/orgs","repos_url":"https://api.github.com/users/astropy/repos","events_url":"https://api.github.com/users/astropy/events{/privacy}","received_events_url":"https://api.github.com/users/astropy/received_events","type":"Organization","site_admin":false},"network_count":331,"subscribers_count":76}'
+    http_version: 
+  recorded_at: Sun, 11 Jan 2015 23:16:51 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/astropy/astropy/contents?client_id=<GITHUB_CLIENT_ID>&client_secret=<GITHUB_CLIENT_SECRET>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Sun, 11 Jan 2015 23:16:52 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4996'
+      X-Ratelimit-Reset:
+      - '1421021810'
+      Cache-Control:
+      - public, max-age=60, s-maxage=60
+      Last-Modified:
+      - Sun, 11 Jan 2015 23:05:31 GMT
+      Etag:
+      - '"8f5bc0ae130981b4c03a6a52584d775f"'
+      Vary:
+      - Accept
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - 021DC5A8:33B7:B1E7EF:54B30464
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - 76d9828c7e4f1d910f7ba069e90ce976
+      Content-Encoding:
+      - gzip
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        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
+        +oGKSQAA
+    http_version: 
+  recorded_at: Sun, 11 Jan 2015 23:16:52 GMT
+recorded_with: VCR 2.9.3

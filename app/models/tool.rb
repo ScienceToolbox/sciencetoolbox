@@ -3,6 +3,7 @@ require 'open-uri'
 class Tool < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
+  index_name [Rails.env, self.model_name.singular].join("_")
 
   acts_as_taggable
   before_validation :get_metadata, :unless => Proc.new { |m| m.persisted? }
@@ -15,6 +16,16 @@ class Tool < ActiveRecord::Base
   validates_uniqueness_of :url
   validates_presence_of :url
   validates_presence_of :name
+
+  # Elasticsearch serialization
+  def as_indexed_json(options={})
+    self.as_json(
+      include:  {
+                  tags: { only: :name},
+                  citations: { only: [:title, :authors] },
+                }
+    )
+  end
 
   def invalidate_cache
     Rails.cache.clear
