@@ -31,7 +31,7 @@ gem 'omniauth-github'
 gem 'omniauth-bitbucket'
 gem 'rest_client'
 gem 'dalli'
-gem "jbuilder"
+gem "active_model_serializers"
 gem "elasticsearch-rails"
 gem "elasticsearch-model"
 gem "rack-cors"

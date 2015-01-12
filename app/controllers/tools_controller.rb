@@ -14,19 +14,23 @@ class ToolsController < ApplicationController
     else
       @tools = Tool.all
     end
+    render json: @tools
   end
 
   def search
     @tools = Tool.search(params[:query]).records.all
+    render json: @tools
   end
 
   def create
     @tool = Tool.new(tool_params)
     @tool.save
+    render json: @tool
   end
 
   def show
     @tool = Tool.find(params[:id])
+    render json: @tool
   end
 
   private

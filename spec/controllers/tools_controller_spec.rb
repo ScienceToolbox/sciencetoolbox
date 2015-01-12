@@ -7,7 +7,6 @@ describe ToolsController, vcr: true do
       get :show, id: @tool.id, format: :json
 
       expect(response.status).to eq 200
-      expect(response).to render_template("show")
       expect(assigns(:tool)).to eq(@tool)
     end
   end
@@ -23,7 +22,6 @@ describe ToolsController, vcr: true do
       get :index, format: :json
 
       expect(response.status).to eq 200
-      expect(response).to render_template("index")
       expect(assigns(:tools)).to eq([@tool, @tool2])
     end
 
@@ -31,8 +29,6 @@ describe ToolsController, vcr: true do
       get :index, sort: "citations", format: :json
 
       expect(response.status).to eq 200
-      expect(response).to render_template("index")
-
       expect(assigns(:tools)).to eq([@tool2, @tool])
     end
   end
