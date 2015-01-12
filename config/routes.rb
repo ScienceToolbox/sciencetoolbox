@@ -10,9 +10,9 @@ Sciencetoolbox::Application.routes.draw do
   get "tags" => 'tags#index'
   get "tag/:name" => 'tags#show', as: :tag
 
-  get "search" => "tools#search"
+  get "search" => "tools#search", defaults: {format: "json"}
 
-  resources :tools, defaults: {format: 'json'}
+  resources :tools, defaults: {format: "json"}
 
   resources :users do
     get 'profile' => 'users/profiles#show'
