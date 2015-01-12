@@ -34,6 +34,7 @@ gem 'dalli'
 gem "jbuilder"
 gem "elasticsearch-rails"
 gem "elasticsearch-model"
+gem "rack-cors"
 
 group :test do
   gem "vcr"

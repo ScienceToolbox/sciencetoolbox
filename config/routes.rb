@@ -12,7 +12,7 @@ Sciencetoolbox::Application.routes.draw do
 
   get "search" => "tools#search"
 
-  resources :tools
+  resources :tools, defaults: {format: 'json'}
 
   resources :users do
     get 'profile' => 'users/profiles#show'
