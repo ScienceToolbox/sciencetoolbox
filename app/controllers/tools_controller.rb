@@ -18,8 +18,8 @@ class ToolsController < ApplicationController
   end
 
   def search
-    @tools = Tool.search(params[:query]).records.all
-    render json: @tools
+    @tools = Tool.search(params[:query] + "*", size: 100).records.all
+    render json: @tools, root: :search
   end
 
   def create
