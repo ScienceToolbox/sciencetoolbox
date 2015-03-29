@@ -27,8 +27,10 @@ ul.tools, ul.citations {
   li {
     margin-bottom: 1em;
   }
+
   margin-left: 0;
   list-style: none;
+  clear: both;
 
   .stargazers_count {
     margin-right: 1em;
@@ -36,6 +38,10 @@ ul.tools, ul.citations {
   li {
     padding-bottom: 6px;
     border-bottom: 1px solid #eee;
+
+    &:last-of-type {
+      border-bottom: none;
+    }
   }
 }
 
@@ -82,5 +88,40 @@ ul.reproducibility_checklist {
   li {
     margin-right: 1em;
     display: inline;
+  }
+}
+
+// Pagination control
+.pagination {
+  margin-top: 1em;
+  margin-bottom: 2em;
+
+  a, span, em {
+    padding: 0.2em 0.5em;
+    display: block;
+    float: left;
+  }
+
+  .disabled {
+    display: none;
+  }
+
+  .current {
+    font-style: normal;
+    font-weight: bold;
+    background: #29abe2;
+    color: white;
+  }
+
+  a:hover, a:focus {
+    color: darken(#29abe2, 10%);
+  }
+
+  &:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
   }
 }
