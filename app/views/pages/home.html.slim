@@ -7,10 +7,17 @@
   .small-12.columns
     p.text-center Search is coming soon! Also, some citations are incorrect, this is very much an early alpha version, feedback welcome!
     br
-    br
-  = will_paginate @tools, previous_label: "&laquo Previous", next_label: "Next &raquo"
+
+.row
+  .small-12.columns
+    = will_paginate @tools, previous_label: "&laquo Previous", next_label: "Next &raquo"
+
   = render 'pages/tool_list', tools: @tools
-  = will_paginate @tools, previous_label: "&laquo Previous", next_label: "Next &raquo"
+
+.row
+  .small-12.columns
+    = will_paginate @tools, previous_label: "&laquo Previous", next_label: "Next &raquo"
+
 .row.form
   .small-12.columns
     = render 'tools/form', tool: @tool
