@@ -95,11 +95,11 @@ ul.reproducibility_checklist {
 .pagination {
   margin-top: 1em;
   margin-bottom: 2em;
+  text-align: center;
 
   a, span, em {
     padding: 0.2em 0.5em;
-    display: block;
-    float: left;
+    display: inline-block;
   }
 
   .disabled {
