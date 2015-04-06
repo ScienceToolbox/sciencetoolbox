@@ -29,7 +29,7 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-github'
 gem 'omniauth-bitbucket'
-gem 'rest_client'
+gem 'rest-client'
 gem 'dalli'
 gem 'will_paginate', '~> 3.0.6'
 
