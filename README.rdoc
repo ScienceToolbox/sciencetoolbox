@@ -1,5 +1,0 @@
-== ScienceToolbox.org - Open scientific software
-
-This is the Rails app powering ScienceToolbox.org.
-
-Take a look at the issues for ideas on how to help.
