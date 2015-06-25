@@ -1,0 +1,39 @@
+- name: allow unattended upgrades
+  apt:
+    pkg: unattended-upgrades
+    update_cache: yes
+
+- name: add htop
+  apt:
+    pkg: htop
+
+- name: add tree
+  apt:
+    pkg: tree
+
+- name: add zip
+  apt:
+    pkg: zip
+
+- name: add deploy user group
+  group:
+    name: deploy
+
+- name: create deploy user in deploy group
+  user:
+    name: deploy
+    group: deploy
+    state: present
+
+- name: copy sudoers file and chmod
+  copy:
+    src: sudoers
+    dest: /etc/sudoers
+    mode: 0440
+
+- name: enable automatic ubuntu security upgrades
+  copy:
+    src: 20auto-upgrades
+    dest: /etc/apt/apt.conf.d/20auto-upgrades
+  notify:
+    - restart unattended-upgrades

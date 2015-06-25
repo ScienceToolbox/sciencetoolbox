@@ -57,6 +57,7 @@ GEM
       capistrano-platform-resources (>= 0.1.3)
     capistrano-unicorn (0.1.10)
       capistrano
+    chronic (0.10.2)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -76,6 +77,13 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    domain_name (0.5.24)
+      unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.0.2)
+    dotenv-deployment (0.0.2)
+    dotenv-rails (2.0.2)
+      dotenv (= 2.0.2)
+      railties (~> 4.0)
     elasticsearch (1.0.6)
       elasticsearch-api (= 1.0.6)
       elasticsearch-transport (= 1.0.6)
@@ -103,6 +111,8 @@ GEM
     hashie (3.3.2)
     highline (1.6.21)
     hike (1.2.3)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
     i18n (0.7.0)
     jquery-rails (4.0.3)
       rails-dom-testing (~> 1.0)
@@ -129,7 +139,7 @@ GEM
     net-ssh (2.9.1)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
-    netrc (0.7.9)
+    netrc (0.10.3)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
     oauth (0.4.7)
@@ -200,8 +210,10 @@ GEM
     rake (10.4.2)
     responders (2.0.2)
       railties (>= 4.2.0.alpha, < 5)
-    rest_client (1.8.2)
-      netrc (~> 0.7.7)
+    rest-client (1.8.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     rspec-core (3.1.7)
       rspec-support (~> 3.1.0)
     rspec-expectations (3.1.2)
@@ -260,6 +272,9 @@ GEM
     uglifier (2.6.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.1)
     unicorn (4.8.3)
       kgio (~> 2.6)
       rack
@@ -270,6 +285,9 @@ GEM
     webmock (1.20.4)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
+    whenever (0.9.4)
+      chronic (>= 0.6.3)
+    will_paginate (3.0.7)
 
 PLATFORMS
   ruby
@@ -283,6 +301,8 @@ DEPENDENCIES
   coffee-rails
   dalli
   devise
+  dotenv-deployment
+  dotenv-rails
   elasticsearch-model
   elasticsearch-rails
   font-awesome-sass
@@ -298,7 +318,7 @@ DEPENDENCIES
   pry
   rack-cors
   rails (= 4.2.0)
-  rest_client
+  rest-client
   rspec-rails
   sass-rails
   simple_form
@@ -307,3 +327,8 @@ DEPENDENCIES
   unicorn
   vcr
   webmock
+  whenever
+  will_paginate (~> 3.0.6)
+
+BUNDLED WITH
+   1.10.5

@@ -1,0 +1,42 @@
+- name: add postgresql
+  apt:
+    pkg: postgresql-9.4
+    force: yes
+    update_cache: yes
+
+- name: add postgresql-server-dev
+  apt:
+    pkg: postgresql-server-dev-9.4
+    force: yes
+
+- name: add postgresql-contrib-9.4 (for uuid support)
+  apt:
+    pkg: postgresql-contrib-9.4
+    force: yes
+
+- name: add python-pip
+  apt:
+    pkg: python-pip
+
+- name: add python-dev
+  apt:
+    pkg: python-dev
+
+- name: add psycopg2
+  pip:
+    name: psycopg2
+
+- name: postgres configuration
+  template:
+    src: postgresql.conf.j2
+    dest: /etc/postgresql/9.4/main/postgresql.conf
+    owner: postgres
+    group: postgres
+  notify:
+    - restart postgres
+
+- name: alter postgresql database to add hstore
+  command: psql template1 -c 'create extension hstore;'
+  sudo: yes
+  sudo_user: postgres
+  ignore_errors: True

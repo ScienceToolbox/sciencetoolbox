@@ -1,0 +1,77 @@
+- name: add ruby repo
+  apt_repository:
+    repo: 'ppa:brightbox/ruby-ng'
+
+- name: add ubuntu key server
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: C3173AA6
+
+- name: add postgres repo
+  apt_repository:
+    repo: deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main
+
+- name: add ruby
+  apt:
+    pkg: ruby2.2
+    state: latest
+
+- name: add ruby with dev flags
+  apt:
+    pkg: ruby2.2-dev
+    state: latest
+
+- name: add nodejs
+  apt:
+    pkg: nodejs
+    state: installed
+
+- name: add libpq-dev
+  apt:
+    pkg: libpq-dev
+    force: yes
+
+- name: add git
+  apt:
+    pkg: git-core
+
+- name: add curl
+  apt:
+    pkg: curl
+
+- name: add zlib
+  apt:
+    pkg: zlib1g-dev
+
+- name: add build-essential
+  apt:
+    pkg: build-essential
+
+- name: add ssl
+  apt:
+    pkg: libssl-dev
+
+- name: add libreadline
+  apt:
+    pkg: libreadline-dev
+
+- name: add libyaml
+  apt:
+    pkg: libyaml-dev
+
+- name: add libxml
+  apt:
+    pkg: libxml2-dev
+
+- name: add libxslt1
+  apt:
+    pkg: libxslt1-dev
+
+- name: add libcurl4-openssl
+  apt:
+    pkg: libcurl4-openssl-dev
+
+- name: add bundler
+  gem:
+    name: bundler
+    user_install: no

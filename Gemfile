@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'dotenv-rails'
+gem 'dotenv-deployment'
+
 gem 'rails', '4.2.0'
 
 # Use SCSS for stylesheets
