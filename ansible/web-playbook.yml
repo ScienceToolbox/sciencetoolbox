@@ -1,0 +1,34 @@
+- hosts: all
+  gather_facts: true
+  remote_user: root
+
+- hosts: webservers
+  sudo: yes
+  remote_user: ubuntu
+  vars_files:
+    - ../.env.{{ lookup('env', 'ENV') }}
+  handlers:
+    - include: roles/nginx/handlers/main.yml
+  roles:
+    - base
+    - {role: ssh, when: vagrant is not defined}
+    - {role: iptables, when: vagrant is not defined}
+    - {role: nginx, when: vagrant is not defined}
+    - redis
+    - ruby
+  tasks:
+    - name: copy nginx
+      template:
+        src: templates/site-nginx.conf.j2
+        dest: /etc/nginx/conf.d/sites.conf
+      notify:
+        - restart nginx
+      when: vagrant is not defined
+
+    - name: create directory for web sites
+      file:
+        state: directory
+        path: /var/www
+        owner: deploy
+        group: deploy
+        mode: 0755

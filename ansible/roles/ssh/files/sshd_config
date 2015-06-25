@@ -1,0 +1,81 @@
+AcceptEnv LANG LC_*
+AddressFamily inet # ipv4 only
+AllowAgentForwarding yes
+#AllowGroups
+AllowTcpForwarding yes
+AllowUsers root deploy ubuntu
+#AuthenticationMethods publickey
+#AuthorizedKeysCommand
+#AuthorizedKeysCommandUser
+AuthorizedKeysFile %h/.ssh/authorized_keys
+#AuthorizedPrincipalsFile
+Banner none
+ChallengeResponseAuthentication no # needed to completely disable passwords via PAM
+#ChrootDirectory
+Ciphers aes256-cbc
+#ClientAliveCountMax
+#ClientAliveInterval
+#Compression
+DebianBanner yes
+#DenyGroups
+#DenyUsers
+#ForceCommand
+#GatewayPorts
+GSSAPIAuthentication no
+#GSSAPIKeyExchange
+#GSSAPICleanupCredentials
+#GSSAPIStrictAcceptorCheck
+#GSSAPIStoreCredentialsOnRekey
+HostbasedAuthentication no
+HostbasedUsesNameFromPacketOnly no
+#HostCertificate
+HostKey /etc/ssh/ssh_host_rsa_key # only rsa
+#HostKeyAgent
+IgnoreRhosts yes
+#IgnoreUserKnownHosts
+#IPQoS
+KbdInteractiveAuthentication no
+KerberosAuthentication no
+#KerberosGetAFSToken
+#KerberosOrLocalPasswd
+#KerberosTicketCleanup
+#KexAlgorithms
+#KeyRegenerationInterval
+#ListenAddress 0.0.0.0
+LoginGraceTime 120
+LogLevel VERBOSE # get key fingerprint info for successful logins
+#MACs
+MaxAuthTries 5
+MaxSessions 10
+MaxStartups 2:50:5
+PasswordAuthentication no
+PermitEmptyPasswords no
+#PermitOpen
+PermitRootLogin without-password
+PermitTunnel no
+PermitTTY yes
+PermitUserEnvironment no
+Port 22
+PrintLastLog yes
+PrintMotd yes
+Protocol 2
+PubkeyAuthentication yes
+#RekeyLimit
+#RevokedKeys
+RhostsRSAAuthentication no
+#RSAAuthentication
+#ServerKeyBits
+StrictModes yes
+Subsystem sftp /usr/lib/openssh/sftp-server
+SyslogFacility AUTH
+TCPKeepAlive yes
+#TrustedUserCAKeys
+UseDNS yes
+UseLogin no
+UsePAM yes
+UsePrivilegeSeparation yes
+#VersionAddendum
+#X11DisplayOffset
+X11Forwarding no
+#X11UseLocalhost
+#XAuthLocation

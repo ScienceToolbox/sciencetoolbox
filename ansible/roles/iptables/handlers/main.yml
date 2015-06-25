@@ -1,0 +1,5 @@
+- name: reload iptables
+  shell: /etc/iptables/iptables.sh
+
+- name: save iptables
+  shell: iptables-save > /etc/iptables/iptables.rules

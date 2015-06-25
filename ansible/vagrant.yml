@@ -1,0 +1,34 @@
+  # This playbook is only for setting up a development environment with Vagrant
+
+- include: db-playbook.yml
+- include: web-playbook.yml
+
+- hosts: all
+  gather_facts: true
+  vars:
+    env:
+      RAILS_ENV: development
+    root: /var/www/sciencetoolbox/current
+  tasks:
+    - name: create tmp sockets directory
+      file: path={{root}}/tmp/sockets state=directory
+    - name: create tmp pids directory
+      file: path={{root}}/tmp/pids state=directory
+    - name: bundle
+      command: bundle chdir={{root}}
+    - name: check if database exists
+      command: ./bin/rake db:version chdir={{root}}
+      environment: env
+      ignore_errors: True
+      register: rake_db_version_result
+    - name: create database
+      command: ./bin/rake db:setup chdir={{root}}
+      environment: env
+      when: rake_db_version_result|failed
+    - name: apply database migrations
+      command: ./bin/rake db:migrate chdir={{root}}
+      environment: env
+      when: rake_db_version_result|success
+    - name: run development web server
+      command: bundle exec rails server -d -b0.0.0.0 chdir={{root}}
+

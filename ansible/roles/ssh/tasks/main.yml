@@ -1,0 +1,14 @@
+- copy:
+    src: sshd_config
+    dest: /etc/ssh/sshd_config
+    owner: root
+    group: root
+  sudo: yes
+  notify:
+    - restart ssh
+
+- authorized_key:
+    user: deploy
+    key: "{{ PUBLIC_KEY }}"
+    manage_dir: true
+    state: present

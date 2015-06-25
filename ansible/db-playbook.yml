@@ -1,0 +1,36 @@
+- hosts: all
+  gather_facts: true
+  remote_user: root
+
+- hosts: databaseservers
+  sudo: yes
+  remote_user: ubuntu
+  vars_files:
+    - vars/common.yml
+    - ../.env.{{ lookup('env', 'ENV') }}
+  roles:
+    - postgresql
+  handlers:
+    - include: roles/postgresql/handlers/main.yml
+  tasks:
+    - postgresql_db:
+        name: "{{ DATABASE_NAME }}"
+      sudo: yes
+      sudo_user: postgres
+
+    - postgresql_user:
+        db: "{{ DATABASE_NAME }}"
+        name: "{{ DATABASE_USERNAME }}"
+        password: "{{ DATABASE_PASSWORD }}"
+        role_attr_flags: SUPERUSER,CREATEROLE,CREATEDB,LOGIN
+      sudo: yes
+      sudo_user: postgres
+
+    - template:
+        src: templates/pg_hba.conf.j2
+        dest: /etc/postgresql/9.4/main/pg_hba.conf
+        owner: postgres
+        group: postgres
+        mode: 0640
+      notify:
+        - restart postgres

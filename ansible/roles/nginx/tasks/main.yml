@@ -1,0 +1,23 @@
+- apt:
+    pkg: nginx
+
+- name: create sites-enabled/default
+  file:
+    state: absent
+    path: /etc/nginx/sites-enabled/default
+  notify:
+    - restart nginx
+
+- name: create sites-available/default
+  file:
+    state: absent
+    path: /etc/nginx/sites-available/default
+  notify:
+    - restart nginx
+
+- name: nginx.conf
+  copy:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+  notify:
+    - restart nginx

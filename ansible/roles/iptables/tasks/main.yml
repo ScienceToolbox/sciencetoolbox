@@ -1,0 +1,22 @@
+- copy:
+    src: iptables-load
+    dest: /etc/network/if-pre-up.d/iptables-load
+    owner: root
+    owner: root
+    mode: 0755
+
+- file:
+    path: /etc/iptables
+    state: directory
+    owner: root
+    mode: 0755
+
+- copy:
+    src: iptables.sh
+    dest: /etc/iptables/iptables.sh
+    owner: root
+    group: root
+    mode: 0755
+  notify:
+    - reload iptables
+    - save iptables
