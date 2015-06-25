@@ -1,0 +1,364 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.github.com/repos/astropy/astropy?client_id=<GITHUB_CLIENT_ID>&client_secret=<GITHUB_CLIENT_SECRET>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.beta+json
+      User-Agent:
+      - Octokit Ruby Gem 2.7.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Thu, 08 Jan 2015 12:12:49 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4708'
+      X-Ratelimit-Reset:
+      - '1420720231'
+      Cache-Control:
+      - public, max-age=60, s-maxage=60
+      Last-Modified:
+      - Wed, 07 Jan 2015 23:51:34 GMT
+      Etag:
+      - '"9204593c3f650cc61fe5e7eb2c7805d5"'
+      Vary:
+      - Accept
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.beta; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - BCE699AA:4D42:8AF518:54AE7440
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - 4c8b2d4732c413f4b9aefe394bd65569
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":2081289,"name":"astropy","full_name":"astropy/astropy","owner":{"login":"astropy","id":847984,"avatar_url":"https://avatars.githubusercontent.com/u/847984?v=3","gravatar_id":"","url":"https://api.github.com/users/astropy","html_url":"https://github.com/astropy","followers_url":"https://api.github.com/users/astropy/followers","following_url":"https://api.github.com/users/astropy/following{/other_user}","gists_url":"https://api.github.com/users/astropy/gists{/gist_id}","starred_url":"https://api.github.com/users/astropy/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/astropy/subscriptions","organizations_url":"https://api.github.com/users/astropy/orgs","repos_url":"https://api.github.com/users/astropy/repos","events_url":"https://api.github.com/users/astropy/events{/privacy}","received_events_url":"https://api.github.com/users/astropy/received_events","type":"Organization","site_admin":false},"private":false,"html_url":"https://github.com/astropy/astropy","description":"Repository
+        for the Astropy core package","fork":false,"url":"https://api.github.com/repos/astropy/astropy","forks_url":"https://api.github.com/repos/astropy/astropy/forks","keys_url":"https://api.github.com/repos/astropy/astropy/keys{/key_id}","collaborators_url":"https://api.github.com/repos/astropy/astropy/collaborators{/collaborator}","teams_url":"https://api.github.com/repos/astropy/astropy/teams","hooks_url":"https://api.github.com/repos/astropy/astropy/hooks","issue_events_url":"https://api.github.com/repos/astropy/astropy/issues/events{/number}","events_url":"https://api.github.com/repos/astropy/astropy/events","assignees_url":"https://api.github.com/repos/astropy/astropy/assignees{/user}","branches_url":"https://api.github.com/repos/astropy/astropy/branches{/branch}","tags_url":"https://api.github.com/repos/astropy/astropy/tags","blobs_url":"https://api.github.com/repos/astropy/astropy/git/blobs{/sha}","git_tags_url":"https://api.github.com/repos/astropy/astropy/git/tags{/sha}","git_refs_url":"https://api.github.com/repos/astropy/astropy/git/refs{/sha}","trees_url":"https://api.github.com/repos/astropy/astropy/git/trees{/sha}","statuses_url":"https://api.github.com/repos/astropy/astropy/statuses/{sha}","languages_url":"https://api.github.com/repos/astropy/astropy/languages","stargazers_url":"https://api.github.com/repos/astropy/astropy/stargazers","contributors_url":"https://api.github.com/repos/astropy/astropy/contributors","subscribers_url":"https://api.github.com/repos/astropy/astropy/subscribers","subscription_url":"https://api.github.com/repos/astropy/astropy/subscription","commits_url":"https://api.github.com/repos/astropy/astropy/commits{/sha}","git_commits_url":"https://api.github.com/repos/astropy/astropy/git/commits{/sha}","comments_url":"https://api.github.com/repos/astropy/astropy/comments{/number}","issue_comment_url":"https://api.github.com/repos/astropy/astropy/issues/comments/{number}","contents_url":"https://api.github.com/repos/astropy/astropy/contents/{+path}","compare_url":"https://api.github.com/repos/astropy/astropy/compare/{base}...{head}","merges_url":"https://api.github.com/repos/astropy/astropy/merges","archive_url":"https://api.github.com/repos/astropy/astropy/{archive_format}{/ref}","downloads_url":"https://api.github.com/repos/astropy/astropy/downloads","issues_url":"https://api.github.com/repos/astropy/astropy/issues{/number}","pulls_url":"https://api.github.com/repos/astropy/astropy/pulls{/number}","milestones_url":"https://api.github.com/repos/astropy/astropy/milestones{/number}","notifications_url":"https://api.github.com/repos/astropy/astropy/notifications{?since,all,participating}","labels_url":"https://api.github.com/repos/astropy/astropy/labels{/name}","releases_url":"https://api.github.com/repos/astropy/astropy/releases{/id}","created_at":"2011-07-21T01:33:49Z","updated_at":"2015-01-07T23:51:34Z","pushed_at":"2015-01-06T11:50:09Z","git_url":"git://github.com/astropy/astropy.git","ssh_url":"git@github.com:astropy/astropy.git","clone_url":"https://github.com/astropy/astropy.git","svn_url":"https://github.com/astropy/astropy","homepage":"www.astropy.org","size":54378,"stargazers_count":482,"watchers_count":482,"language":"Python","has_issues":true,"has_downloads":true,"has_wiki":true,"has_pages":false,"forks_count":331,"mirror_url":null,"open_issues_count":421,"forks":331,"open_issues":421,"watchers":482,"default_branch":"master","master_branch":"master","organization":{"login":"astropy","id":847984,"avatar_url":"https://avatars.githubusercontent.com/u/847984?v=3","gravatar_id":"","url":"https://api.github.com/users/astropy","html_url":"https://github.com/astropy","followers_url":"https://api.github.com/users/astropy/followers","following_url":"https://api.github.com/users/astropy/following{/other_user}","gists_url":"https://api.github.com/users/astropy/gists{/gist_id}","starred_url":"https://api.github.com/users/astropy/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/astropy/subscriptions","organizations_url":"https://api.github.com/users/astropy/orgs","repos_url":"https://api.github.com/users/astropy/repos","events_url":"https://api.github.com/users/astropy/events{/privacy}","received_events_url":"https://api.github.com/users/astropy/received_events","type":"Organization","site_admin":false},"network_count":331,"subscribers_count":77}'
+    http_version: 
+  recorded_at: Thu, 08 Jan 2015 12:12:51 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/astropy/astropy/contents?client_id=<GITHUB_CLIENT_ID>&client_secret=<GITHUB_CLIENT_SECRET>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Thu, 08 Jan 2015 12:12:49 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4707'
+      X-Ratelimit-Reset:
+      - '1420720231'
+      Cache-Control:
+      - public, max-age=60, s-maxage=60
+      Last-Modified:
+      - Wed, 07 Jan 2015 23:51:34 GMT
+      Etag:
+      - '"feead55da22f0b9607db953b3a7d6baf"'
+      Vary:
+      - Accept
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - BCE699AA:4D46:6BFB1C:54AE7441
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - c6c65e5196703428e7641f7d1e9bc353
+      Content-Encoding:
+      - gzip
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        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
+        Q4pJAAA=
+    http_version: 
+  recorded_at: Thu, 08 Jan 2015 12:12:52 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/meren/illumina-utils?client_id=<GITHUB_CLIENT_ID>&client_secret=<GITHUB_CLIENT_SECRET>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.beta+json
+      User-Agent:
+      - Octokit Ruby Gem 2.7.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Thu, 08 Jan 2015 12:12:50 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4706'
+      X-Ratelimit-Reset:
+      - '1420720231'
+      Cache-Control:
+      - public, max-age=60, s-maxage=60
+      Last-Modified:
+      - Thu, 04 Dec 2014 21:27:39 GMT
+      Etag:
+      - '"b9e5b773db3cc11d195acb377462cff9"'
+      Vary:
+      - Accept
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.beta; format=json
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - BCE699AA:4D45:F3B759:54AE7441
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - a30e6f9aa7cf5731b87dfb3b9992202d
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":2270441,"name":"illumina-utils","full_name":"meren/illumina-utils","owner":{"login":"meren","id":197307,"avatar_url":"https://avatars.githubusercontent.com/u/197307?v=3","gravatar_id":"","url":"https://api.github.com/users/meren","html_url":"https://github.com/meren","followers_url":"https://api.github.com/users/meren/followers","following_url":"https://api.github.com/users/meren/following{/other_user}","gists_url":"https://api.github.com/users/meren/gists{/gist_id}","starred_url":"https://api.github.com/users/meren/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/meren/subscriptions","organizations_url":"https://api.github.com/users/meren/orgs","repos_url":"https://api.github.com/users/meren/repos","events_url":"https://api.github.com/users/meren/events{/privacy}","received_events_url":"https://api.github.com/users/meren/received_events","type":"User","site_admin":false},"private":false,"html_url":"https://github.com/meren/illumina-utils","description":"A
+        library and collection of scripts to work with Illumina paired-end data (for
+        CASAVA 1.7+ pipeline).","fork":false,"url":"https://api.github.com/repos/meren/illumina-utils","forks_url":"https://api.github.com/repos/meren/illumina-utils/forks","keys_url":"https://api.github.com/repos/meren/illumina-utils/keys{/key_id}","collaborators_url":"https://api.github.com/repos/meren/illumina-utils/collaborators{/collaborator}","teams_url":"https://api.github.com/repos/meren/illumina-utils/teams","hooks_url":"https://api.github.com/repos/meren/illumina-utils/hooks","issue_events_url":"https://api.github.com/repos/meren/illumina-utils/issues/events{/number}","events_url":"https://api.github.com/repos/meren/illumina-utils/events","assignees_url":"https://api.github.com/repos/meren/illumina-utils/assignees{/user}","branches_url":"https://api.github.com/repos/meren/illumina-utils/branches{/branch}","tags_url":"https://api.github.com/repos/meren/illumina-utils/tags","blobs_url":"https://api.github.com/repos/meren/illumina-utils/git/blobs{/sha}","git_tags_url":"https://api.github.com/repos/meren/illumina-utils/git/tags{/sha}","git_refs_url":"https://api.github.com/repos/meren/illumina-utils/git/refs{/sha}","trees_url":"https://api.github.com/repos/meren/illumina-utils/git/trees{/sha}","statuses_url":"https://api.github.com/repos/meren/illumina-utils/statuses/{sha}","languages_url":"https://api.github.com/repos/meren/illumina-utils/languages","stargazers_url":"https://api.github.com/repos/meren/illumina-utils/stargazers","contributors_url":"https://api.github.com/repos/meren/illumina-utils/contributors","subscribers_url":"https://api.github.com/repos/meren/illumina-utils/subscribers","subscription_url":"https://api.github.com/repos/meren/illumina-utils/subscription","commits_url":"https://api.github.com/repos/meren/illumina-utils/commits{/sha}","git_commits_url":"https://api.github.com/repos/meren/illumina-utils/git/commits{/sha}","comments_url":"https://api.github.com/repos/meren/illumina-utils/comments{/number}","issue_comment_url":"https://api.github.com/repos/meren/illumina-utils/issues/comments/{number}","contents_url":"https://api.github.com/repos/meren/illumina-utils/contents/{+path}","compare_url":"https://api.github.com/repos/meren/illumina-utils/compare/{base}...{head}","merges_url":"https://api.github.com/repos/meren/illumina-utils/merges","archive_url":"https://api.github.com/repos/meren/illumina-utils/{archive_format}{/ref}","downloads_url":"https://api.github.com/repos/meren/illumina-utils/downloads","issues_url":"https://api.github.com/repos/meren/illumina-utils/issues{/number}","pulls_url":"https://api.github.com/repos/meren/illumina-utils/pulls{/number}","milestones_url":"https://api.github.com/repos/meren/illumina-utils/milestones{/number}","notifications_url":"https://api.github.com/repos/meren/illumina-utils/notifications{?since,all,participating}","labels_url":"https://api.github.com/repos/meren/illumina-utils/labels{/name}","releases_url":"https://api.github.com/repos/meren/illumina-utils/releases{/id}","created_at":"2011-08-25T20:36:01Z","updated_at":"2014-12-04T21:27:39Z","pushed_at":"2014-12-04T21:27:39Z","git_url":"git://github.com/meren/illumina-utils.git","ssh_url":"git@github.com:meren/illumina-utils.git","clone_url":"https://github.com/meren/illumina-utils.git","svn_url":"https://github.com/meren/illumina-utils","homepage":"","size":2368,"stargazers_count":10,"watchers_count":10,"language":"Python","has_issues":true,"has_downloads":true,"has_wiki":true,"has_pages":false,"forks_count":5,"mirror_url":null,"open_issues_count":0,"forks":5,"open_issues":0,"watchers":10,"default_branch":"master","master_branch":"master","network_count":5,"subscribers_count":5}'
+    http_version: 
+  recorded_at: Thu, 08 Jan 2015 12:12:53 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/meren/illumina-utils/contents?client_id=<GITHUB_CLIENT_ID>&client_secret=<GITHUB_CLIENT_SECRET>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Thu, 08 Jan 2015 12:12:50 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4705'
+      X-Ratelimit-Reset:
+      - '1420720231'
+      Cache-Control:
+      - public, max-age=60, s-maxage=60
+      Last-Modified:
+      - Thu, 04 Dec 2014 21:27:39 GMT
+      Etag:
+      - '"3bda41d64617c9a78f67a6f937313b38"'
+      Vary:
+      - Accept
+      - Accept-Encoding
+      X-Github-Media-Type:
+      - github.v3
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - deny
+      Content-Security-Policy:
+      - default-src 'none'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Github-Request-Id:
+      - BCE699AA:4D41:5E191C:54AE7442
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - 318e55760cf7cdb40e61175a4d36cd32
+      Content-Encoding:
+      - gzip
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA72WW2vcMBCF/4uft7ElW7IVKKW0oeShFwp5KKEEXUZZU18W
+        S0tow/73yt2LlcUp8cqb1wGP5pz59uzcPkYNryG6jC7uS1veN20H0SJacbs8
+        rpkldyWaYCyFFowUKFEFA041ygRLpSpoyguVU0pVhlwTU/5xjRFhi2jdVe7b
+        pbUrcxnHfFX2ry3X4kK2ddzBqjVxDR00cVlV67ps+Ju1LSsTy7ax0FgTD9O9
+        60C/rbmx0Lk3lrau7p529zqP9hRVK+JtA6+t6+U+PGr18kHdt3Hf2MQTDFLt
+        Q1O1XB292vGHnT1rA93Ogn9OjeoZk2J/r/qd6rLqt3lXlc0vE10+RgYqfZ5F
+        OANOanyScf3WvddO3PhmszjQ/+Hrtx/XXz4N6A+FLfdpgWiOeUIBSZUiQTWk
+        uYaM8aRgRIok58T9EvjAfZEQPAP5u0FmxX4QNw/zE8yZlflBx/mAH/U/nPYJ
+        lgXQvjfIR/16F7E3fcIOwB+Xt9hriSXDmmYSKS1ZAiTFGEMOTEuRYY5opgRD
+        9IB9MgPyT0YJBt92APu8PxYZin/f28QTTHqKf7OuqkW0Y1eV/R/anFn9Hx9D
+        AJ4seiLAzy/Mx/j71fuPn68uajUg7Je2+HKCcpYyTTiSlCaZVDxLUsGwQ5Yg
+        YJgwCoUmB3xxijCZAeHDKMH4+ueKLzAU3e21MsGgWZPbV3K+7H5mCyHwT7Zt
+        Ivzj6/bBv2lKa8FYL7v90j63eZGhQgIGonCuUilIJhKsFCcJA0khTxmmctbc
+        PowRDL0fAb64UOj30fVic141r5/xLwTXyYIn4jq+KB9XI7ty5cM6FLaoEujv
+        CJwqIt1FLTDj3F0U7sBIdeEimxKX3qTg2ayo7oaYFdRB2DyYTjDmVTEd9S4c
+        0glyAyDdL2mz+fkXdzfEk/wQAAA=
+    http_version: 
+  recorded_at: Thu, 08 Jan 2015 12:12:53 GMT
+recorded_with: VCR 2.9.3

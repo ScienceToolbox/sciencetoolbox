@@ -10,7 +10,10 @@ Sciencetoolbox::Application.routes.draw do
   get "tags" => 'tags#index'
   get "tag/:name" => 'tags#show', as: :tag
 
+  get "search" => "tools#search"
+
   resources :tools
+
   resources :users do
     get 'profile' => 'users/profiles#show'
   end

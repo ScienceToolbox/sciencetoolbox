@@ -17,7 +17,7 @@ namespace :process do
     sources = ['bitbucket.org', 'github.com']
     #sources = ['github.com']
     sources.each do |source|
-      page = 1
+      page = 18
       results = ['woot']
       while !results.empty?
         puts "Processing page #{page}."

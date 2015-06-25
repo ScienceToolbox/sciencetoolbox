@@ -1,13 +1,36 @@
 class ToolsController < ApplicationController
-  def create
+  def index
+    case params[:sort]
+    when "citations"
+      @tools = Tool.select("tools.*, COUNT(citations.id) citations_count").
+        joins("LEFT JOIN citations ON citations.tool_id = tools.id").
+        group("tools.id")
 
+      @tools = if params[:order] == "asc"
+        @tools.order("citations_count ASC")
+      else
+        @tools.order("citations_count DESC")
+      end
+    else
+      @tools = Tool.all
+    end
+    render json: @tools
+  end
+
+  def search
+    @tools = Tool.search(params[:query] + "*", size: 100).records.all
+    render json: @tools, root: :search
+  end
+
+  def create
     @tool = Tool.new(tool_params)
     @tool.save
-    redirect_to root_url
+    render json: @tool
   end
 
   def show
     @tool = Tool.find(params[:id])
+    render json: @tool
   end
 
   private
