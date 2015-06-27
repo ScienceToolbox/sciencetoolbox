@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'dotenv-rails'
-gem 'dotenv-deployment'
 
 gem "rails", "4.2.3"
 gem "rails-api"
