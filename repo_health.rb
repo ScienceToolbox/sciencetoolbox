@@ -23,7 +23,7 @@ end
 # Github
 user = 'bionode'
 repo = 'bionode'
-data = JSON.parse RestClient.get "https://api.github.com/repos/#{user}/#{repo}/contents", {:params => {:client_id => ENV['ST_GITHUB_CLIENT_ID'], 'client_secret' => ENV['ST_GITHUB_CLIENT_SECRET']}}
+data = JSON.parse RestClient.get "https://api.github.com/repos/#{user}/#{repo}/contents", {:params => {:client_id => ENV['GITHUB_CLIENT_ID'], 'client_secret' => ENV['GITHUB_CLIENT_SECRET']}}
 path_key = 'name'
 contents = data
 check_health(contents, path_key)

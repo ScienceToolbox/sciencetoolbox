@@ -4,7 +4,6 @@ Sciencetoolbox::Application.routes.draw do
                       :registrations => 'users/registrations' }
 
   get "tools/create"
-  root "pages#home"
 
   get "tags/search"
   get "tags" => 'tags#index'
