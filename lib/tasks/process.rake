@@ -14,15 +14,15 @@ namespace :process do
 
   desc "Process EuropePMC"
   task europe_pmc: :environment do
-    sources = ['bitbucket.org', 'github.com']
-    #sources = ['github.com']
+    #sources = ['bitbucket.org', 'github.com']
+    sources = ['github.com']
     sources.each do |source|
-      page = 18
+      page = 1
       results = ['woot']
       while !results.empty?
         puts "Processing page #{page}."
         user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1907.0 Safari/537.36"
-        api_url = "http://www.ebi.ac.uk/europepmc/webservices/rest/search/query=#{source}&dataset=fulltext&page=#{page}&resultType=core&format=json"
+        api_url = "http://www.ebi.ac.uk/europepmc/webservices/rest/search/query=#{source}&page=#{page}&resulttype=core&format=json"
         response = open(api_url, 'User-Agent' => user_agent).read
         results = JSON.parse(response)['resultList']['result']
         results.each do |result|

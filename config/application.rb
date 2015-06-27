@@ -13,6 +13,12 @@ Bundler.require(:default, Rails.env)
 
 module Sciencetoolbox
   class Application < Rails::Application
+    config.active_record.raise_in_transactional_callbacks = true
+    config.middleware.use config.session_store, config.session_options
+    config.middleware.use Rack::MethodOverride
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
+    config.middleware.use ActionDispatch::Flash
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

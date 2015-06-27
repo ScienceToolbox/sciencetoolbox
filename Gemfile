@@ -3,25 +3,16 @@ source 'https://rubygems.org'
 gem 'dotenv-rails'
 gem 'dotenv-deployment'
 
-gem 'rails', '4.2.0'
-
-# Use SCSS for stylesheets
-gem 'sass-rails'
+gem "rails", "4.2.3"
+gem "rails-api"
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
-# Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails'
-
-gem 'slim-rails'
 gem 'pg'
 gem 'rspec-rails'
-gem 'foundation-rails'
 gem 'octokit', '~> 2.0'
 gem 'acts-as-taggable-on', '~> 3.4'
-gem 'font-awesome-sass'
-gem 'simple_form'
 gem 'capistrano', '< 3.0.0'
 gem 'capistrano-unicorn'
 gem 'capistrano-rbenv', '1.0.5'
