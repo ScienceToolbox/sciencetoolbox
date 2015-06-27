@@ -14,8 +14,12 @@ VCR.configure do |c|
   c.hook_into :webmock
   c.ignore_localhost = true
   c.configure_rspec_metadata!
-  c.filter_sensitive_data("<GITHUB_CLIENT_ID>") { ENV['GITHUB_CLIENT_ID'] }
-  c.filter_sensitive_data("<GITHUB_CLIENT_SECRET>") { ENV['GITHUB_CLIENT_SECRET'] }
+  c.filter_sensitive_data("<GITHUB_CLIENT_ID>") {
+    ENV["GITHUB_CLIENT_ID"]
+  }
+  c.filter_sensitive_data("<GITHUB_CLIENT_SECRET>") {
+    ENV["GITHUB_CLIENT_SECRET"]
+  }
 end
 
 RSpec.configure do |config|
