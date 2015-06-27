@@ -25,7 +25,7 @@ gem 'rest-client'
 gem 'dalli'
 gem 'will_paginate', '~> 3.0.6'
 gem 'whenever', :require => false
-gem "active_model_serializers"
+gem "active_model_serializers", "~> 0.10.0.rc2"
 gem "elasticsearch-rails"
 gem "elasticsearch-model"
 gem "rack-cors"
