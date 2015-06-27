@@ -29,6 +29,7 @@ gem "active_model_serializers", "~> 0.10.0.rc2"
 gem "elasticsearch-rails"
 gem "elasticsearch-model"
 gem "rack-cors"
+gem "open_uri_redirections"
 
 group :test do
   gem "vcr"

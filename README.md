@@ -5,6 +5,11 @@ Science Toolbox is an index of open research software (for example [sickle by na
 This repository represent the Rails app powering ScienceToolbox.org's API.
 Take a look at the issues for ideas on how to help.
 
+# Importing from sources
+
+There are several sources from which software can be imported/indexed, a very good example is the EuropePMC dataset. To import data from EuropePMC, open a console and run `Importer::EuropePmc.import`. This will loop through results on EuropePMC and add them to the database.
+
 # Development
 
 `vagrant up` and navigate to http://10.4.4.4:3000 to start developing.
+
