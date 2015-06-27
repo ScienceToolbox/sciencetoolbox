@@ -10,6 +10,7 @@
     - ../.env.{{ lookup('env', 'ENV') }}
   roles:
     - postgresql
+    - ansible-elasticsearch
   handlers:
     - include: roles/postgresql/handlers/main.yml
   tasks:
