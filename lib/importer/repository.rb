@@ -17,7 +17,7 @@ module Importer
 
     def process
       repo_url = "https://#{@source}/#{@username}/#{@repository_name}"
-      tool = Tool.where(url: repo_url).first_or_create
+      Tool.where(url: repo_url).first_or_create
     end
   end
 end
