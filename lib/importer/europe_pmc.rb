@@ -3,7 +3,7 @@ module Importer
     # Long running
     def self.import
       SOURCES.each do |source|
-        self.new(source).import
+        new(source).import
       end
     end
 
@@ -29,7 +29,7 @@ module Importer
     end
 
     def process_result(result)
-      doi = result["doi"] or return
+      return unless result["doi"]
       urls = urls(result)
       paper = Paper.from(result, urls, @source)
       paper.process
@@ -38,7 +38,7 @@ module Importer
     def urls(result)
       result["fullTextUrlList"]["fullTextUrl"].select do |u|
         u["availability"] == "Free" && u["documentStyle"] == "html" ||
-        u["availability"] == "Open access" && u["documentStyle"] == "html"
+          u["availability"] == "Open access" && u["documentStyle"] == "html"
       end
     end
 
