@@ -1,5 +1,7 @@
 module Importer
   class Repository
+    attr_reader :repo
+
     def self.process(text, source)
       repos = text.scan(/(?:https?\:\/\/)(#{source})\/
         ([^),.\/]+)\/([^,\s)(\/]+)\/?([^ )]*)/x)
@@ -10,9 +12,19 @@ module Importer
     end
 
     def initialize(repo)
-      @source = repo[0]
-      @username = repo[1].gsub(/\p{Z}/, "")
-      @repository_name = repo[2].gsub(/\.$/, "").gsub(/[\p{Z}​​]/, "")
+      @repo = repo
+    end
+
+    def username
+      repo[1].gsub(/\p{Z}/, "")
+    end
+
+    def source
+      repo[0]
+    end
+
+    def repository_name
+      repo[2].gsub(/\.$/, "").gsub(/[\p{Z}​​]/, "")
     end
 
     def process

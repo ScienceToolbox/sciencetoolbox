@@ -13,6 +13,7 @@ class Tool < ActiveRecord::Base
   after_save :invalidate_cache
   has_and_belongs_to_many :users
   has_many :citations
+  has_many :tool_versions
   validates_uniqueness_of :url
   validates_presence_of :url
   validates_presence_of :name
@@ -54,8 +55,8 @@ class Tool < ActiveRecord::Base
       when :github
         contents = JSON.parse RestClient.get "https://api.github.com/repos/#{repo_name}/contents",
         {:params =>
-          {:client_id => ENV['ST_GITHUB_CLIENT_ID'],
-          'client_secret' => ENV['ST_GITHUB_CLIENT_SECRET']
+          {:client_id => ENV['GITHUB_CLIENT_ID'],
+          'client_secret' => ENV['GITHUB_CLIENT_SECRET']
           }
         }
         path_key = 'name'
