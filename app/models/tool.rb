@@ -55,8 +55,9 @@ class Tool < ActiveRecord::Base
       when :github
         contents = JSON.parse RestClient.get "https://api.github.com/repos/#{repo_name}/contents",
         {:params =>
-          {:client_id => ENV['GITHUB_CLIENT_ID'],
-          'client_secret' => ENV['GITHUB_CLIENT_SECRET']
+          {
+            :client_id => ENV["GITHUB_CLIENT_ID"],
+            :client_secret => ENV["GITHUB_CLIENT_SECRET"]
           }
         }
         path_key = 'name'

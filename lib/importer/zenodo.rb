@@ -1,6 +1,6 @@
 module Importer
   class Zenodo
-    XMLNS = {xmlns: "http://datacite.org/schema/kernel-3"}
+    XMLNS = { xmlns: "http://datacite.org/schema/kernel-3" }
 
     # Long running
     def self.import
@@ -41,17 +41,14 @@ module Importer
         if url.text =~ /github.com/
           process_github_url(url.text)
         else
-          puts url
           doi = result.css(doi_css, XMLNS).first
-          puts doi
-          #process_other("http://dx.doi.org/#{doi.text}")
+          # process_other("http://dx.doi.org/#{doi.text}")
         end
       end
 
       # Citations
-      result.css(cited_css, XMLNS).first.try(:tap) do |url|
-        puts url
-      end
+      # result.css(cited_css, XMLNS).first.try(:tap) do |url|
+      # end
 
       result
     end
@@ -60,14 +57,11 @@ module Importer
       url_parts = url.match(/.*github.com\/(.+?)\/(.+?)(\/|\z)/)
       main_url = "https://github.com/#{url_parts[1]}/#{url_parts[2]}"
       tool = Tool.where(url: main_url).first_or_create
-      puts tool
       tool_version = ToolVersion.where(url: url, tool: tool).first_or_create
-      puts tool_version
     end
 
     def process_other(url)
       tool = Tool.where(url: url).first_or_create
-      puts tool
     end
 
     def api_url
