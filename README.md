@@ -1,5 +1,9 @@
 [![Code Climate](https://codeclimate.com/github/ScienceToolbox/sciencetoolbox/badges/gpa.svg)](https://codeclimate.com/github/ScienceToolbox/sciencetoolbox)
 
+# UPDATE 
+
+ScienceToolbox was unfortunately discuntinued in February 2016 (https://twitter.com/juretriglav/status/697754558051786753) so the links below are no longer active as the domain name expired.
+
 # ScienceToolbox.org - Open research software
 
 Science Toolbox is an index of open research software (for example [sickle by najoshi](http://sciencetoolbox.org/tools/65) or [retriever by weecology](http://sciencetoolbox.org/tools/13)). Our mission is to empower research software developers, give them the tools to measure their impact and showcase their work. Anywhere you want to (grants, CVs, reports, ...), it should be easy to include a link to your ScienceToolbox profile, where all your repositories and their impact is stored and displayed in a friendly manner.
